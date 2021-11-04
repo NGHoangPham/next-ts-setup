@@ -1,4 +1,5 @@
 import { useUser } from '@auth0/nextjs-auth0';
+import { Button } from 'antd';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
@@ -9,20 +10,12 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <>
         <h1>Login page</h1>
-        {user && (
-          <a style={{ padding: 8, background: 'blue', color: '#fff' }} href="/api/auth/logout">
-            Logout
-          </a>
-        )}
+        {user && <Button href="/api/auth/logout">Logout</Button>}
         <br />
         <br />
-        {!user && (
-          <a style={{ padding: 8, background: 'blue', color: '#fff' }} href="/api/auth/login">
-            Login
-          </a>
-        )}
+        {!user && <Button href="/api/auth/login">Login</Button>}
         <Link href="/profile">
-          <a style={{ padding: 8, background: 'blue', color: '#fff' }}>Profile</a>
+          <Button>Profile</Button>
         </Link>
       </>
     </div>

@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    jest: true,
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
@@ -23,7 +24,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import', 'jsx-a11y'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import', 'jsx-a11y', 'testing-library'],
   rules: {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
@@ -59,21 +60,17 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
-    'import/no-extraneous-dependencies': [
-      'warn',
-      { devDependencies: ['jest.setup.ts', '**/*.test.tsx', '**/*.spec.tsx', '**/*.test.ts', '**/*.spec.ts'] },
-    ],
   },
-  overrides: [
-    {
-      // only run testling library linting on test files not entire codebase
-      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
-      extends: ['plugin:testing-library/react'],
-    },
-  ],
+  overrides: [],
   settings: {
     react: {
       version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
+    'import/resolver': {
+      // use <root>/tsconfig.json
+      typescript: {
+        project: '.',
+      },
     },
   },
 };
