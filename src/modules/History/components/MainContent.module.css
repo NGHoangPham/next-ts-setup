@@ -1,0 +1,25 @@
+.mainContainer {
+  margin: 40px 0;
+}
+
+.filterBySchedule {
+  text-align: right;
+  margin-bottom: 40px;
+  width: 100%;
+  display: inline-block;
+}
+
+.btnReset {
+  border-radius: 999px;
+  background: rgba(120, 134, 134, 0.68);
+  padding-top: 2px;
+}
+
+.btnReset:hover,
+.btnReset:focus {
+  background: rgba(120, 134, 134, 0.603);
+}
+
+.datePicker {
+  width: 160px;
+}

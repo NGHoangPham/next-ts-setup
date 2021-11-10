@@ -1,0 +1,16 @@
+.root {
+  padding: 0 75px;
+  margin-bottom: 152px;
+}
+
+.title {
+  font-weight: 900 !important;
+  font-size: 45px !important;
+  line-height: 57px !important;
+  margin-bottom: 9px !important;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 23px;
+}

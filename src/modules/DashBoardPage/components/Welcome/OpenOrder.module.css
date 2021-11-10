@@ -1,0 +1,46 @@
+.root {
+  width: 100%;
+  position: relative;
+  padding: 21px 21px 12px 21px;
+}
+
+/* Remove antd table default styles */
+.table {
+  max-width: 100%;
+}
+.table :global .ant-table,
+.table :global .ant-spin-container::after,
+.table :global .ant-table-placeholder:hover > td {
+  background: none !important;
+}
+
+.table :global .ant-table-placeholder > td > div {
+  color: #ffffff !important;
+}
+
+.table thead tr th::before,
+.table thead tr th {
+  background: none !important;
+  border: none !important;
+  color: #9aa3a7;
+}
+
+.table tr td {
+  background: none !important;
+  border: none !important;
+}
+
+/* ------------------------------------------ */
+
+/* Table styles */
+.table tr:hover > td {
+  color: var(--orange-main);
+}
+
+.table {
+  margin-bottom: 5px;
+}
+
+.iconConvert {
+  border: none !important;
+}

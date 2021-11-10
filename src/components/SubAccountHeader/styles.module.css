@@ -1,0 +1,97 @@
+.root {
+  width: 100%;
+  padding: 10px 12px;
+}
+
+.transfer :global .styles_inputContainer__DSsni {
+  justify-content: space-between;
+}
+.transfer :global .SelectWithLabel_input__3giek {
+  width: 150px !important;
+}
+
+.subAccItem {
+  border: 0;
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
+.subAccWrapper :global .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  background-color: transparent;
+}
+
+.subAccWrapper :global .ant-radio-button-wrapper:not(:first-child)::before {
+  background-color: transparent;
+}
+.subAccWrapper :global .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):focus-within {
+  box-shadow: none !important;
+}
+.subAccWrapper :global .ant-radio-button-wrapper:focus-within {
+  box-shadow: none !important;
+}
+.subAccWrapper :global .ant-radio-button-wrapper {
+  color: rgb(133, 133, 133) !important;
+}
+.subAccWrapper :global .ant-radio-button-wrapper:hover {
+  color: #c18d00 !important;
+}
+.subAccWrapper :global .ant-radio-button-wrapper-checked {
+  color: #ffba00 !important;
+}
+
+.amountWrapper :global .ant-input-number-handler-wrap {
+  display: none;
+}
+
+.btnAction {
+  height: 26px !important;
+  padding: 4px 15px !important;
+  margin: 0 8px;
+}
+
+.amount {
+  display: flex !important;
+}
+.amountTitle {
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+.coinName {
+  margin: 12px;
+}
+
+.btnMax {
+  height: 32px !important;
+  padding: 8px 13px !important;
+  margin-top: 4px;
+}
+
+.root :global .ant-form-item-explain {
+  right: 0px !important;
+  width: fit-content;
+}
+.amountWrapper :global .ant-input-number {
+  width: max-content !important;
+}
+.root :global .ant-tabs-nav {
+  margin: 0;
+}
+.root :global .ant-tabs-top > .ant-tabs-nav::before {
+  border-bottom: none;
+}
+.root :global .ant-tabs-ink-bar {
+  display: none;
+}
+
+.titleSub {
+  margin-right: 8px;
+}
+
+.spin {
+  margin-left: 12px;
+}
+
+.tabWrapper {
+  max-width: 75% !important;
+}

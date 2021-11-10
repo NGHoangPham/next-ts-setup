@@ -1,0 +1,30 @@
+.root {
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.priceUp {
+  background-color: #1d443b;
+  color: var(--green-indicator) !important;
+  font-weight: bold;
+}
+
+.priceDown {
+  background-color: #3b1f31;
+  color: var(--pink-indicator) !important;
+  font-weight: bold;
+}
+
+.priceStable {
+  background-color: #494b50;
+  color: var(--tint-3) !important;
+  font-weight: bold;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.percent {
+  font-size: 12px;
+}

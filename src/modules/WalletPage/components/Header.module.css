@@ -1,0 +1,14 @@
+.titleContainer {
+  margin-top: 24px;
+}
+
+.pnlWrapper {
+  width: 156px;
+  padding: 8px 16px;
+  row-gap: 10px;
+  margin-left: 40px;
+}
+
+.percentInd {
+  margin: 0 auto;
+}

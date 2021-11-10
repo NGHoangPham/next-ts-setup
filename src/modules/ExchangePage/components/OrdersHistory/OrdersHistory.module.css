@@ -1,0 +1,126 @@
+.mainContainer {
+  margin: 40px 0;
+}
+
+.filterBySchedule {
+  text-align: right;
+  margin-bottom: 40px;
+  width: 100%;
+  display: inline-block;
+}
+
+.btnReset {
+  border-radius: 999px;
+  background: rgba(120, 134, 134, 0.68);
+  padding-top: 2px;
+}
+
+.btnReset:hover,
+.btnReset:focus {
+  background: rgba(120, 134, 134, 0.603);
+}
+
+.datePicker {
+  width: 160px;
+}
+
+.root {
+  width: 100%;
+  position: relative;
+  padding: 21px 21px 12px 21px;
+  height: 584px;
+}
+
+/* Remove antd table default styles */
+.table {
+  max-width: 100%;
+}
+.table :global .ant-table,
+.table :global .ant-spin-container::after,
+.table :global .ant-table-placeholder:hover > td {
+  background: none !important;
+}
+
+.table :global .ant-table-placeholder > td > div {
+  color: #ffffff !important;
+}
+
+.table thead tr th::before,
+.table thead tr th {
+  background: none !important;
+  border: none !important;
+}
+
+.table tr td {
+  background: none !important;
+  border: none !important;
+}
+
+/* ------------------------------------------ */
+
+/* Table styles */
+.table tr:hover > td {
+  color: var(--orange-main);
+}
+
+.table {
+  margin-bottom: 5px;
+}
+
+.btnExchange {
+  border-color: transparent;
+  height: auto !important;
+  box-shadow: none !important;
+  padding: 0px !important;
+  font-size: 10px;
+}
+
+.btnExchange:hover,
+.btnCancel:hover,
+.btnExchange:focus,
+.btnCancel:focus {
+  border-color: transparent;
+}
+
+.btnCancel {
+  border-color: transparent;
+  height: auto !important;
+  box-shadow: none !important;
+  padding: 0px !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.btnCancel > span {
+  margin-right: 8px;
+}
+
+.ant-pagination-item {
+  font-weight: 500;
+  background: transparent;
+  border-color: #ffba00;
+}
+
+.popconfirm {
+  font-weight: 300;
+}
+
+.popconfirm > span {
+  margin-right: 4px;
+  color: #788686;
+}
+
+.iconConvert {
+  border: none !important;
+}
+
+.authButton {
+  margin: 32px 0;
+}
+
+/* 250px */
+
+@media (max-width: 640px) {
+  .filerGroup > div > label {
+    height: 41.5px !important;
+  }
+}

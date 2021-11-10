@@ -1,0 +1,35 @@
+.root {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 24px;
+}
+
+.subtitle {
+  margin-left: 48px;
+  font-size: 12px;
+}
+
+.subAccountItem {
+  width: 100%;
+  border-top: 1px solid #cccccc1a;
+  padding-top: 8px;
+}
+
+.subAccountWrapper,
+.vertical {
+  width: 100%;
+}
+
+.btnAction {
+  height: 26px !important;
+  padding: 4px 7px !important;
+  border: none;
+}
+.btnAction:hover {
+  background: #00000045;
+}
+
+.selectSubAcc {
+  height: 300px;
+  overflow-y: auto;
+}

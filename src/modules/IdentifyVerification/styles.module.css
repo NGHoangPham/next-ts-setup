@@ -1,0 +1,28 @@
+.root {
+  padding-top: var(--nav-bar-height);
+  margin: 125px auto 125px auto;
+  min-height: calc(100vh - var(--nav-bar-height) - 150px);
+  width: 500px;
+}
+.howTo {
+  margin-bottom: 35px;
+}
+
+.stepper {
+  max-width: 450px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+/* Update this to align the title */
+.stepper :global .ant-steps-item-content {
+  width: 160px !important;
+}
+
+.title {
+  font-size: 22px !important;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 900 !important;
+  color: #ffffff;
+}

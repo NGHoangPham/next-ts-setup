@@ -1,0 +1,110 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titles {
+  text-align: center;
+}
+
+.table {
+  width: 753px;
+  max-width: 100%;
+  margin: 0 auto 20px auto;
+}
+
+.table :global .ant-table,
+.table :global .ant-spin-container::after {
+  background: none !important;
+}
+
+.table table {
+  border-spacing: 0px 10px !important;
+}
+
+.table thead {
+  display: none;
+}
+
+.table tr {
+  background: var(--dark-background);
+}
+
+.table tr td {
+  padding: 0 !important;
+  background: none !important;
+  border: 2px solid #5f5f5f26;
+  height: 65px;
+  border-right-width: 0;
+  border-left-width: 0;
+}
+
+.table tr td:first-child {
+  border-radius: 10px 0px 0px 10px;
+  border-left-width: 2px;
+  padding-left: 29px !important;
+}
+
+.table tr td:last-child {
+  border-radius: 0px 10px 10px 0px;
+  border-right-width: 2px;
+  padding-right: 16px !important;
+}
+
+.rowPair {
+  width: 120px;
+}
+
+.rowValue {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.rowValue__pair span {
+  line-height: 20px;
+}
+
+.rowValue__pair img {
+  margin-right: 4px;
+}
+
+.rowValue__priceUnit {
+  margin-right: 5px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.rowValue__changePercentValue,
+.rowValue__changePercentage {
+  color: inherit !important;
+}
+
+.rowValue__volumeTimestamp,
+.rowValue__volumeValue {
+  font-weight: 300;
+  font-family: Avenir;
+}
+
+.rowValue__volumeTimestamp {
+  font-size: 12px;
+  color: #788686;
+}
+
+.rowValue__volumeValue {
+  font-size: 14px;
+  color: #bfc1c3 !important;
+}
+
+.rowValue_price {
+  font-family: Avenir;
+}
+
+.btnIcon {
+  margin-left: 18px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}

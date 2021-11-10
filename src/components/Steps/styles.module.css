@@ -1,0 +1,48 @@
+.root :global .ant-steps-item-tail::after {
+  background-color: #ffffff26 !important;
+  height: 2px;
+}
+
+.root :global .ant-steps-item-icon {
+  border-color: #ffffff80 !important;
+  border-width: 2px;
+}
+
+.root :global .ant-steps-icon {
+  color: #ffffff !important;
+}
+
+/* Update this to align the title */
+.root :global .ant-steps-item-content {
+  width: 129px;
+}
+
+.root :global .ant-steps-item-content .ant-steps-item-title {
+  font-size: 14px;
+}
+
+.root :global .ant-steps-item:first-child .ant-steps-item-title {
+  padding-left: 10px;
+}
+
+.root :global .ant-steps-item:last-child .ant-steps-item-title {
+  padding-left: 10px;
+}
+
+:global .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title {
+  color: var(--orange-main) !important;
+}
+
+:global .ant-steps-item-wait .ant-steps-item-icon {
+  background: #ffffff80;
+}
+
+:global .ant-steps-item-finish .ant-steps-item-container .ant-steps-item-tail::after {
+  background-color: #ffffff !important;
+}
+
+:global .ant-steps-item-finish .ant-steps-item-container .ant-steps-item-icon {
+  border-color: var(--accent-turqoise) !important;
+  background-color: var(--turqoise-dark) !important;
+  border-width: 2px;
+}

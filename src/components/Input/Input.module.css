@@ -1,0 +1,38 @@
+.root {
+  background-color: transparent !important;
+  box-shadow: 0px 0px 10px #00000026;
+  border: 2px solid #5f5f5f26 !important;
+  border-radius: 10px !important;
+  padding: 8.5px 22px !important;
+  height: 40px;
+}
+
+.input::placeholder {
+  color: #788686;
+}
+
+.root:focus {
+  box-shadow: none !important;
+}
+
+.large {
+  font-size: 22px !important;
+  height: 64px !important;
+  padding: 20px 24px !important;
+}
+
+.large,
+.large input {
+  font-weight: bold !important;
+}
+
+.inputNumber {
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.inputNumber::placeholder {
+  color: #788686;
+}

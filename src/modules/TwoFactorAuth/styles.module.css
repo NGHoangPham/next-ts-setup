@@ -1,0 +1,70 @@
+.root {
+  padding-top: var(--nav-bar-height);
+  margin: 125px auto 125px auto;
+  min-height: calc(100vh - var(--nav-bar-height) - 150px);
+  width: 500px;
+}
+.howTo {
+  margin-bottom: 35px;
+}
+
+.stepper {
+  max-width: 450px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 22px !important;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 900 !important;
+  color: #ffffff;
+}
+
+.surface {
+  padding: 23px 21px 25px 24px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.btnSubmit {
+  position: absolute;
+  right: 21px;
+  bottom: -20px;
+  z-index: 1;
+}
+
+.heading {
+  text-align: center;
+  font-size: 12px;
+  margin: 5px 0 35px 0;
+}
+
+.optionsContainer {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.actionButton {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.inputSquare {
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  font-size: 16px;
+  line-height: 40px;
+}
+
+.inputSquare,
+.inputSquare:hover,
+.inputSquare:focus {
+  border-color: #bfc1c3;
+}
+
+.inputSquareWrap {
+  display: inline-block;
+}

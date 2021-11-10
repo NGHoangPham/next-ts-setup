@@ -1,0 +1,67 @@
+.slider {
+  background-color: var(--dark-background-light);
+  margin: 10px 0;
+}
+
+.slider :global .ant-slider-handle {
+  background-image: url('/images/svgs/slider.svg');
+  width: 19px;
+  height: 19px;
+  margin-top: -2px;
+  z-index: 4;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.slider :global .ant-slider-dot-active {
+  border: none !important;
+  background-color: var(--tint-4) !important;
+}
+
+.slider :global .ant-slider-dot {
+  border-color: white !important;
+  color: white !important;
+  background: white !important;
+}
+
+.slider :global .ant-slider-rail {
+  height: 2px !important;
+}
+
+.slider :global .ant-slider-handle.ant-tooltip-open,
+.slider :global .ant-slider-handle.ant-slider-handle-click-focused,
+.slider :global .ant-slider-handle:focus {
+  border: none !important;
+}
+
+.slider :global .ant-slider-step {
+  background-color: var(--dark-background-light) !important;
+  height: 2px !important;
+}
+
+.slider :global .ant-slider-track {
+  background-color: var(--tint-4) !important;
+  height: 2px !important;
+  z-index: 2;
+}
+
+.slider :global .ant-tooltip-inner {
+  color: white !important;
+}
+
+.slider :global .ant-slider-dot {
+  width: 6px !important;
+  height: 6px !important;
+  z-index: 3;
+}
+
+.slider :global .ant-slider {
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  height: auto;
+}
+
+.slider :global .ant-slider-mark {
+  display: none;
+}

@@ -1,0 +1,29 @@
+.carouselContainer {
+  display: flex;
+  align-items: center;
+}
+
+.carousel {
+  position: relative;
+  width: calc(100% - 32px);
+}
+
+.dotWrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  float: right;
+  margin-right: -22px;
+}
+.dot {
+  width: 14px;
+  height: 14px;
+  background: var(--dark-background);
+  border-radius: 50%;
+  border: 2px solid rgb(204 204 204 / 10%);
+  cursor: pointer;
+}
+
+.dotActive {
+  background: var(--orange-main);
+}

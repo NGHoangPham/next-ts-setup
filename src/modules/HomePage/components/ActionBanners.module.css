@@ -1,0 +1,107 @@
+.card {
+  padding: 25px 26px;
+  height: 211px;
+  box-shadow: 0px 0px 10px #00000026;
+  border-radius: 10px;
+  position: relative;
+}
+
+.cardBuy {
+  border: 2px solid #74faea1a;
+  background-color: var(--accent-turqoise);
+  display: flex;
+}
+
+.cardBuyContent {
+  flex: 1 1 0;
+  padding-right: 27px;
+}
+
+.cardBuyInputs {
+  width: 366px;
+  position: relative;
+}
+
+.cardBuyInputs :global .ant-space {
+  width: 100%;
+}
+
+.arrowDown {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 51px;
+  background: var(--accent-turqoise);
+  box-shadow: 0px 0px 10px #00000026;
+  border-radius: 50px;
+  text-align: center;
+  padding-top: 13px;
+}
+
+.arrowDown > svg {
+  color: var(--turqoise-dark);
+  font-size: 21px;
+}
+
+.btn {
+  position: absolute;
+  right: 26px;
+  bottom: -20px;
+  z-index: 1;
+}
+
+.cardBuyTitle {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin-bottom: 11px;
+}
+
+.paymentPrompt {
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+.cardBuyPriceTextTop {
+  color: #c7c7c7;
+  line-height: 19px;
+}
+
+.cardBuyPriceTextBottom {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.border {
+  border-top: 3px solid #09625d;
+  margin: 0px 4px;
+  border-radius: 30%;
+  margin-top: 4px;
+}
+
+.arrowDown > svg {
+  font-size: 18px;
+}
+
+@media (max-width: 700px) {
+  .paymentPrompt {
+    display: none;
+  }
+
+  .card {
+    height: 255px;
+  }
+  .arrowDown {
+    top: 40%;
+  }
+}
+@media (min-width: 701px) {
+  .paymentPromptMobile {
+    display: none;
+  }
+}

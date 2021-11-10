@@ -1,0 +1,201 @@
+.dropdownPanel {
+  position: absolute;
+  width: 495px;
+  top: 100%;
+  right: 0;
+  padding-top: 20px;
+  background: transparent;
+  z-index: 1;
+  height: 440px;
+}
+.dropdownFullscreen {
+  left: 0;
+  right: unset;
+}
+.staticPanel {
+  background: transparent;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+}
+
+.dropdownWrap {
+  padding: 15px;
+  position: relative;
+  height: 100%;
+}
+
+.mask {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: transparent;
+  border-radius: 10px;
+}
+.firstMask {
+  background: #22242a;
+  border: 2px solid rgba(204, 204, 204, 0.1);
+  opacity: 0.9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+}
+.secondMask {
+  background-image: radial-gradient(rgba(105, 90, 144, 1), rgba(94, 80, 128, 1), rgba(0, 0, 0, 0));
+  opacity: 0.5;
+}
+
+.dropdownContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchWrap {
+  margin: 15px 0;
+  position: relative;
+}
+.searchInput {
+  border: 2px solid rgba(95, 95, 95, 0.25);
+}
+
+.searchSubmit {
+  padding: 11px !important;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9aa3a7;
+}
+.searchSubmit:hover {
+  color: #fff;
+}
+
+.table {
+  max-width: 100%;
+}
+.table :global .ant-table,
+.table :global .ant-spin-container::after,
+.table :global .ant-table-placeholder:hover > td {
+  background: none !important;
+}
+
+.table :global .ant-table-placeholder > td > div {
+  color: #ffffff !important;
+}
+
+.table thead tr th::before,
+.table thead tr th {
+  background: none !important;
+  border: none !important;
+  color: #9aa3a7;
+}
+
+.table tr td {
+  background: none !important;
+  border: none !important;
+}
+
+.table tbody tr {
+  cursor: pointer;
+}
+
+.faEye {
+  color: #fff;
+}
+.faEyeActive {
+  color: var(--orange-main);
+}
+
+.paraSuccess {
+  margin-bottom: 0;
+  text-align: right;
+  font-size: 14px;
+  color: #00fe9a;
+  font-weight: 300;
+}
+.paraDanger {
+  margin-bottom: 0;
+  text-align: right;
+  font-size: 14px;
+  color: #ff006a;
+  font-weight: 300;
+}
+.paraDark {
+  margin-bottom: 0;
+  text-align: right;
+  font-size: 10px;
+  color: #9aa3a7;
+  font-weight: 300;
+}
+.sortIcon {
+  vertical-align: middle;
+}
+.sortUp {
+  transform: translateY(2px);
+}
+.sortDown {
+  transform: translateY(-4px);
+}
+.percentage {
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.transButton {
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: initial;
+}
+
+.detailIconCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.detailIcon {
+  margin-left: 5px;
+  color: #9aa3a7;
+}
+.detailIcon:hover {
+  color: #fff;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: #40454f;
+  border-radius: 8px;
+  border-radius: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #bfc1c3;
+  background-clip: padding-box;
+  border: 4px solid transparent;
+}
+
+.scroll {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.closeDropdownButton {
+  color: #9aa3a7;
+}
+.closeDropdownButton:hover {
+  color: #fff;
+}

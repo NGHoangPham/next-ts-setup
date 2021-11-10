@@ -1,0 +1,44 @@
+.root {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 24px;
+}
+
+.amount {
+  display: flex !important;
+}
+.amountTitle {
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+.coinName {
+  margin: 12px;
+}
+
+.btnMax {
+  height: 32px !important;
+  padding: 8px 13px !important;
+  margin-top: 4px;
+}
+
+.root :global .ant-form-item-explain {
+  right: 0px !important;
+  width: fit-content;
+}
+.root :global .ant-input-number {
+  width: max-content !important;
+}
+.root :global .ant-input-number-handler-wrap {
+  display: none;
+}
+.root :global .styles_inputContainer__DSsni {
+  justify-content: space-between;
+}
+.root :global .SelectWithLabel_input__3giek {
+  width: 150px !important;
+}
+
+.spin {
+  margin-left: 12px;
+}

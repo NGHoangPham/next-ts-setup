@@ -1,0 +1,67 @@
+.root {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgb(128 128 128 / 21%);
+  box-shadow: 0px 0px 5px #00000026;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.filled {
+  background-color: rgba(191, 193, 195, 0.15);
+}
+
+.filterWrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 13px;
+}
+
+.filterWrapper :global .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  background-color: transparent;
+  border-radius: 13px;
+  box-shadow: none !important;
+  color: var(--green-indicator);
+}
+
+.filterItem {
+  border: none !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  padding: 0px 15px !important;
+  line-height: 22px !important;
+  height: 20px;
+  flex: 1 1 50%;
+  text-align: center;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.filterItem::before {
+  background-color: transparent !important;
+}
+
+.buySelect span {
+  color: var(--green-indicator);
+}
+
+.buySelect {
+  background-color: rgba(0, 254, 154, 0.25) !important;
+  color: var(--green-indicator);
+}
+.buySelect:hover {
+  background-color: rgba(0, 254, 154, 0.25) !important;
+}
+
+.sellSelect span {
+  color: var(--pink-indicator);
+}
+
+.sellSelect {
+  background-color: rgba(255, 0, 106, 0.25) !important;
+  color: var(--pink-indicator);
+}
+
+.sellSelect:hover {
+  background-color: rgba(255, 0, 106, 0.25) !important;
+}

@@ -1,0 +1,154 @@
+{
+  "navbar": {
+    "menu": {
+      "buy_crypto": "Buy Crypto",
+      "trade": "Trade",
+      "market": "Market",
+      "staking": "Staking"
+    },
+    "wallet": {
+      "title": "Wallet",
+      "overview": "Overview",
+      "spot_wallet": "Spot Wallet"
+    },
+    "account": {
+      "account_management": "account management",
+      "reward_center": "reward center",
+      "log_out": "log out"
+    },
+    "nav": {
+      "log_in": "Log In",
+      "register": "Register"
+    }
+  },
+  "footer": {
+    "nav": {
+      "about_us": "About Us",
+      "privacy_policy": "Privacy Policy",
+      "blog": "Blog",
+      "announcements": "Annoucements",
+      "help_center": "Help Center",
+      "feedback": "Feedback"
+    },
+    "subscriber": {
+      "title": "Subscribe For Updates",
+      "your_email": "Your Email",
+      "subscribe": "Subscribe",
+      "tos": "I have read and agree to the <0>Terms of Service</0>"
+    },
+    "join_community": {
+      "title": "Join The Community"
+    }
+  },
+  "homepage": {
+    "hero": {
+      "title": "Bull To The Moon!",
+      "subtitle": "The ultimate exchange for the head runners!",
+      "start_now": "Start Now"
+    },
+    "banners": {
+      "buy_now": {
+        "title": "BUY NOW",
+        "value_text_coin": "{{coin}} is roughly",
+        "payment_prompt": "You’ll be prompted for payment methods in the next step"
+      }
+    },
+    "why": {
+      "title": "Why ULTOREX?",
+      "footer_text": "Here are some of the reasons why head runners choose to trade with ULTOREX",
+      "title_1": "FAST",
+      "text_1": "We promptly judged antique ivory buckles for the next prize",
+      "title_2": "SECURE",
+      "text_2": "We promptly judged antique ivory buckles for the next prize",
+      "title_3": "RELIABLE",
+      "text_3": "We promptly judged antique ivory buckles for the next prize",
+      "title_4": "LIQUID",
+      "text_4": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_1": "SPOT",
+      "bottom_text_1": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_2": "MARGIN",
+      "bottom_text_2": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_3": "STAKING",
+      "bottom_text_3": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_4": "MOBILE APP",
+      "bottom_text_4": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_5": "+PRO TOOLS",
+      "bottom_text_5": "We promptly judged antique ivory buckles for the next prize"
+    },
+    "buy": {
+      "title": "Buy crypto at true cost",
+      "subtitle": "Pick your cryptocurrency out of 50+ listed coins.",
+      "buy_now": "Buy Now",
+      "list_all": "List All"
+    }
+  },
+  "historypage": {
+    "title": {
+      "title": "History",
+      "orders": "Orders",
+      "deposit": "Deposit/Withdraw",
+      "purchase": "Purchase",
+      "login": "Login"
+    },
+    "table": {
+      "title": "ORDER HISTORY",
+      "openOrders": "Open Orders",
+      "orderHistory": "Order History",
+      "tradeHistory": "Trade History"
+    }
+  },
+  "register": {
+    "terms": {
+      "1_1": "I have read and accepted the ",
+      "1_2": "privacy policy.",
+      "2_1": "I have read and accepted the ",
+      "2_2": "consent document for data protection.",
+      "3_1": "I accept commercial electronic messages to my ",
+      "3_2": "other contact information."
+    },
+    "error": {
+      "password_not_match": "Parola eşleşmiyor"
+    },
+    "resend": {
+      "success": "A verification code has been sent. Please check your email to get verification code."
+    }
+  },
+  "forgot_password": {
+    "success": "A verification code has been sent. Please check your email to get verification code."
+  },
+  "login": {
+    "title": "LOG IN",
+    "button": {
+      "login": "Login",
+      "forgot": "Forgot password?",
+      "register": "Create account"
+    },
+    "form": {
+      "email": {
+        "label": "EMAIL",
+        "place_holder": "Your Email"
+      },
+      "password": {
+        "label": "PASSWORD",
+        "place_holder": "Your Password"
+      },
+      "remember": {
+        "label": "Keep me logged in on this computer"
+      }
+    },
+
+    "note": {
+      "register": "if you don't have any account"
+    }
+  },
+  "form": {
+    "validate": {
+      "required": "Bu alan boş bırakılamaz"
+    }
+  },
+  "google_authenticator": {
+    "title": "2 Aşamalı Doğrulama",
+    "description": "Lütfen 2 adımlı Kimlik Doğrulama uygulamasından kodu girin",
+    "placeholder": "Lütfen Doğrulama Kodunu Girin"
+  }
+}

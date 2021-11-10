@@ -1,0 +1,28 @@
+.root {
+  padding: 15px 15px 0;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #bfc1c340;
+}
+.iconClose {
+  margin-right: 5px;
+}
+
+.root :global .ant-radio-button-wrapper span {
+  font-size: 10px !important;
+}
+.root :global .ant-radio-group {
+  column-gap: 6px;
+}
+
+.root :global .tradeBoardFilter {
+  background-color: rgb(99 99 99 / 38%);
+  padding: 4.5px 10px !important;
+}

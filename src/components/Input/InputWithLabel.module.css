@@ -1,0 +1,66 @@
+.input,
+.input:focus,
+.input > input {
+  border-color: unset !important;
+  box-shadow: unset !important;
+  border: none !important;
+  height: 100% !important;
+  width: 100% !important;
+  opacity: 1;
+  text-align: right;
+  padding-right: 24px !important;
+}
+
+.surfaceFocused {
+  background-color: #22242a !important;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.input:disabled {
+  background-color: transparent !important;
+}
+
+.input:focus {
+  color: var(--orange-main);
+}
+
+/* Change autocomplete styles in WebKit */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input > input:-webkit-autofill,
+.input > input:-webkit-autofill:hover,
+.input > input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+  box-shadow: 0 0 0px 1000px #000 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  transition: background-color 10000s ease-in-out 0s;
+}
+
+/* Placeholder */
+.input:placeholder-shown,
+.input > input:placeholder-shown {
+  font-style: italic;
+  color: #bfc1c3;
+  font-size: 16px !important;
+}
+
+.input:placeholder-shown,
+.input.searchForm > input:placeholder-shown {
+  margin-right: 12px;
+}
+
+/* Props style */
+.input span[role='img'] {
+  color: #ffffff;
+}
+
+.small {
+  font-size: 14px !important;
+}
+.middle {
+  font-size: 16px !important;
+}
+.large {
+  font-size: 18px !important;
+}

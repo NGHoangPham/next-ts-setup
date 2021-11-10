@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.title {
+  font-weight: 900 !important;
+  color: #ffffff;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+.textInfo {
+  font-size: 18px;
+  color: var(--orange-main);
+}

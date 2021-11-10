@@ -1,0 +1,107 @@
+.root {
+  width: 360px;
+  height: 56px;
+  background-color: rgba(34, 36, 42, 0.5);
+  box-shadow: 0px 0px 10px #00000026;
+  border: 2px solid #cccccc1a;
+  border-radius: 10px;
+  margin-right: 10px;
+  position: relative;
+  margin-top: -15px;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+}
+.currency {
+  display: flex;
+  align-items: center;
+}
+.root :global .ant-avatar {
+  margin-right: 5px;
+}
+.sellPrice {
+  color: var(--pink-indicator);
+  font-size: 12px;
+}
+.buyPrice {
+  color: var(--green-indicator);
+  font-size: 12px;
+}
+.buyButton,
+.sellButton {
+  height: 30px !important;
+  line-height: 9px !important;
+  padding: 12px 30px !important;
+  position: absolute;
+}
+.buyButton {
+  left: -5px;
+}
+.sellButton {
+  right: -5px;
+}
+.inputOrder {
+  display: flex;
+  padding: 0 20px;
+  position: absolute;
+  top: 36px;
+  justify-content: center;
+  width: 100%;
+}
+.root :global .ant-input {
+  border: none !important;
+  box-shadow: none !important;
+  height: 30px;
+  text-align: center;
+}
+.inputWrapper {
+  background: rgba(34, 36, 42, 1);
+  box-shadow: 0px 0px 10px #00000026;
+  border: 2px solid #5f5f5f26 !important;
+  border-radius: 10px !important;
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+.root :global .ant-input-number-handler-wrap {
+  display: none;
+}
+.root :global .ant-input-number {
+  border: none;
+  box-shadow: none;
+}
+.root :global .ant-input-number-focused {
+  border: none;
+  box-shadow: none;
+}
+.root :global .ant-input-number:hover {
+  border: none;
+  box-shadow: none;
+}
+.root :global .ant-input-number-input {
+  text-align: center;
+}
+
+.inputAmount {
+  width: 130px !important;
+}
+
+.btnClose {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.btnDot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.btnClose:hover,
+.btnDot:hover {
+  cursor: pointer;
+}

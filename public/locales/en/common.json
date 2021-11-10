@@ -1,0 +1,395 @@
+{
+  "navbar": {
+    "menu": {
+      "buy_crypto": "Buy Crypto",
+      "trade": "Trade",
+      "market": "Markets",
+      "staking": "Staking"
+    },
+    "wallet": {
+      "title": "Wallet",
+      "overview": "Overview",
+      "spot_wallet": "Spot Wallet"
+    },
+    "account": {
+      "account_management": "account management",
+      "reward_center": "reward center",
+      "log_out": "log out",
+      "referral_dashboard": "referral dashboard",
+      "earnings": "earnings",
+      "history": "history"
+    },
+    "nav": {
+      "log_in": "Log In",
+      "register": "Register"
+    }
+  },
+  "footer": {
+    "nav": {
+      "about_us": "About Us",
+      "privacy_policy": "Privacy Policy",
+      "blog": "Blog",
+      "announcements": "Announcements",
+      "help_center": "Help Center",
+      "feedback": "Feedback"
+    },
+    "subscriber": {
+      "title": "Subscribe For Updates",
+      "your_email": "Your Email",
+      "subscribe": "Subscribe",
+      "tos": "I have read and agree to the <0>Terms of Service</0>",
+      "register": "Register"
+    },
+    "join_community": {
+      "title": "Join The Community"
+    },
+    "agree_term": {
+      "agree": "I have read and agree to the ",
+      "term": "Terms of Service."
+    },
+    "ultorex": "© 2021 ULTOREX, All Rights Reserved."
+  },
+  "homepage": {
+    "hero": {
+      "title": "Bull To The Moon!",
+      "subtitle": "The ultimate exchange for the head runners!",
+      "start_now": "Start Now"
+    },
+    "banners": {
+      "buy_now": {
+        "title": "BUY NOW",
+        "value_text_coin": "{{coin}} is roughly",
+        "payment_prompt": "You’ll be prompted for payment methods in the next step"
+      }
+    },
+    "why": {
+      "title": "Why ULTOREX?",
+      "footer_text": "Here are some of the reasons why head runners choose to trade with ULTOREX",
+      "title_1": "FAST",
+      "text_1": "We promptly judged antique ivory buckles for the next prize",
+      "title_2": "SECURE",
+      "text_2": "We promptly judged antique ivory buckles for the next prize",
+      "title_3": "RELIABLE",
+      "text_3": "We promptly judged antique ivory buckles for the next prize",
+      "title_4": "LIQUID",
+      "text_4": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_1": "SPOT",
+      "bottom_text_1": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_2": "MARGIN",
+      "bottom_text_2": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_3": "STAKING",
+      "bottom_text_3": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_4": "MOBILE APP",
+      "bottom_text_4": "We promptly judged antique ivory buckles for the next prize",
+      "bottom_title_5": "+PRO TOOLS",
+      "bottom_text_5": "We promptly judged antique ivory buckles for the next prize"
+    },
+    "buy": {
+      "title": "Buy crypto at true cost",
+      "subtitle": "Pick your cryptocurrency out of 50+ listed coins.",
+      "buy_now": "Buy Now",
+      "list_all": "List All"
+    }
+  },
+  "account_management": {
+    "setting_currency_USD": "US Dollar (USD) ",
+    "setting_currency_JPY": "Japanese Yen (JPY) ",
+    "setting_currency_CNY": "Chinese Yuan (CNY) ",
+    "setting_currency_EUR": "Euro (EUR) ",
+    "setting_currency_GBP": "Great Britain Pound (GBP) ",
+    "setting_currency_KRW": "Korean Won (KRW)",
+    "setting_currency_TWD": "New Taiwan Dollar (TWD) ",
+    "setting_currency_TRY": "Turkish Lira (TRY) ",
+    "title": "Account Management",
+    "latest_activity": "Latest Activity",
+    "save_btn": "Save",
+    "edit_btn": "Edit",
+    "mfa_tooltip": "Setup 2FA to add extra security level to your account",
+    "kyc_tooltip": "Setup KYC to add extra security level to your account",
+    "information": {
+      "change_password": "Change Password",
+      "upload_text": "Upload Picture",
+      "max_file": "Max file size 5MB",
+      "upload_btn": "Upload",
+      "changeNickname_success": "Updated successfully!",
+      "invalid_nickName": "* Nickname is invalid!",
+      "invalid_email": "* Email is invalid!",
+      "invalid_phone": "* Phone is invalid!",
+      "placeholder_nickName": "Your Nickname",
+      "placeholder_email": "Your Email",
+      "placeholder_phone": "Your Phone"
+    },
+    "preference": {
+      "title": "PREFERENCES",
+      "update_success": "Updated successfully!"
+    },
+    "setup": {
+      "MFA_enable_title": "Secure",
+      "MFA_disable_title": "Not Secure!",
+      "MFA_enable_description": "Google Authenticator",
+      "MFA_disable_description": "Setup 2-Factor to secure your account",
+      "MFA_enable_button": "Setup",
+      "MFA_disable_button": "Disable",
+      "KYC_not_verified_title": "Not Verified",
+      "KYC_submitted_title": "Under Review",
+      "KYC_passed_title": "Passed",
+      "KYC_failed_title": "Verified Failed",
+      "KYC_not_verified_description": "Setup KYC to secure your account",
+      "KYC_submitted_description": "Your documents are being reviewed",
+      "KYC_passed_description": "You Completed KYC",
+      "KYC_failed_description": "Your documents were rejected",
+      "verified_btn": "Verify",
+      "active_verified": "Verified"
+    },
+    "limit": {
+      "title": "LIMITS",
+      "tooltip": "Display FIAT Deposit & Withdraw Limit and Crypto Withdraw Limit by Daily, Month",
+      "tag": "TIER 2",
+      "fiat": "FIAT Deposit & Withdraw Limit",
+      "daily": "Daily",
+      "monthly": "Monthly",
+      "crypto": "Crypto Withdraw Limit",
+      "link": "How to increase your limits?"
+    }
+  },
+  "historypage": {
+    "title": {
+      "title": "History",
+      "orders": "Orders",
+      "deposit": "Deposit/Withdraw",
+      "purchase": "Purchase",
+      "login": "Logins"
+    },
+    "table": {
+      "title": "ORDER HISTORY",
+      "openOrders": "Open Orders",
+      "orderHistory": "Order History",
+      "tradeHistory": "Trade History"
+    },
+    "other": {
+      "open_order_type_all": "All",
+      "open_order_type_buy": "Buy",
+      "open_order_type_sell": "Sell"
+    },
+    "columns": {
+      "date": "Date",
+      "pair": "Pair",
+      "type": "Type",
+      "side": "Side",
+      "avgPrice": "Average Price",
+      "price": "Price",
+      "amount": "Amount",
+      "filled": "Filled",
+      "total": "Total",
+      "status": "Status",
+      "stopPrice": "Stop Price",
+      "cancelAll": "Cancel All",
+      "cancelAllOrder": "Are you want to cancel all orders ?",
+      "cancelOrder": "Are you want to cancel this order ?",
+      "cancel": "Cancel",
+      "canceled": "Canceled",
+      "finished": "Finished"
+    }
+  },
+  "register": {
+    "terms": {
+      "1_1": "I have read and accepted the ",
+      "1_2": "privacy policy.",
+      "2_1": "I have read and accepted the ",
+      "2_2": "consent document for data protection.",
+      "3_1": "I accept commercial electronic messages to my ",
+      "3_2": "other contact information."
+    },
+    "error": {
+      "password_not_match": "Password does not match"
+    },
+    "resend": {
+      "success": "A verification code has been sent. Please check your email to get verification code."
+    }
+  },
+  "forgot_password": {
+    "success": "A verification code has been sent. Please check your email to get verification code."
+  },
+  "login": {
+    "title": "LOG IN",
+    "button": {
+      "login": "Login",
+      "forgot": "Forgot password?",
+      "register": "Create account"
+    },
+    "form": {
+      "email": {
+        "label": "EMAIL",
+        "place_holder": "Your Email"
+      },
+      "password": {
+        "label": "PASSWORD",
+        "place_holder": "Your Password"
+      },
+      "remember": {
+        "label": "Keep me logged in on this computer"
+      }
+    },
+    "note": {
+      "register": "if you don't have any account"
+    }
+  },
+  "form": {
+    "validate": {
+      "required": "is required"
+    }
+  },
+  "google_authenticator": {
+    "title": "2-Step Authentication",
+    "description": "Please enter the code from the 2-Step Authentication app",
+    "placeholder": "Please enter verification code"
+  },
+  "walletpage": {
+    "header_content": {
+      "title": "Your Wallet",
+      "account_balance": "Account balance:",
+      "deposit_history": "Deposit Withdraw History"
+    },
+    "wallet_table": {
+      "coin": "Coin",
+      "total": "Total",
+      "inuse": "In Use",
+      "available": "Available",
+      "value": "Value",
+      "action": "Action",
+      "buy": "Buy",
+      "deposit": "Deposit",
+      "withdraw": "Withdraw",
+      "trade": "Trade",
+      "coin_block_empty": "No Trading Market"
+    }
+  },
+  "marketpage": {
+    "home": {
+      "buy_crypto": "Buy crypto at true cost",
+      "intro": "Pick your cryptocurrency out of 50+ listed coins.",
+      "popular": "Popular",
+      "top_gainer": "Top Gainer",
+      "top_loser": "Top loser"
+    },
+    "marketTable": {
+      "coin": "Coin",
+      "lastPrice": "Last price",
+      "24h_change": "24h Change",
+      "24h_hight": "24h Hight",
+      "24h_low": "24h Low",
+      "market_cap": "Market Cap",
+      "24h_volume": "24h Volume",
+      "trade": "Trade",
+      "buy": "Buy"
+    },
+    "form": {
+      "place_holder": "Type Crypto Name",
+      "search": "Search"
+    },
+    "filter": {
+      "all": "All",
+      "watch": "Your Watchlist"
+    }
+  },
+  "kyc": {
+    "document_type": {
+      "1": "Passport",
+      "2": "Driver's license",
+      "3": "National ID Card",
+      "4": "Others"
+    }
+  },
+  "exchange": {
+    "trading_chart": {
+      "24h_change": "24h Change",
+      "24h_high": "24h High",
+      "24h_low": "24h Low",
+      "24h_volumn": "24h Volumn",
+      "pair": "Pair",
+      "price": "Price",
+      "change": "Change"
+    },
+    "place_order": {
+      "order_success": "Your order is placed",
+      "not_enough_balance": "Not enough balance",
+      "minimum_amount": "Minimum trading amount: ",
+      "iceberg_smaller": "Iceberg amount has to be smaller than order amount",
+      "empty_price": "Please input price",
+      "empty_stop": "Please input stop",
+      "empty_total": "Please input total",
+      "empty_limit": "Please input limit",
+      "empty_amount": "Please input amount",
+      "empty_iceberg_amount": "Please input Iceberg amount",
+      "buy_uppercase": "BUY",
+      "sell_uppercase": "SELL",
+      "limit_uppercase": "LIMIT",
+      "market_uppercase": "MARKET",
+      "stop_uppercase": "STOP",
+      "price": "price",
+      "total": "total",
+      "amount": "amount",
+      "iceberg": "Iceberg",
+      "make_order": "Make Order",
+      "buy": "buy",
+      "sell": "sell",
+      "stop": "stop",
+      "limit": "limit",
+      "wallet": "Wallet",
+      "available": "Available"
+    },
+    "columns": {
+      "date": "Date",
+      "pair": "Pair",
+      "type": "Type",
+      "side": "Side",
+      "avgPrice": "Average Price",
+      "price": "Price",
+      "amount": "Amount",
+      "filled": "Filled",
+      "total": "Total",
+      "status": "Status",
+      "stopPrice": "Stop Price",
+      "cancelAll": "Cancel All",
+      "cancelAllOrder": "Are you sure you want to cancel all orders?",
+      "cancelOrder": "Are you sure you want to cancel this order?",
+      "cancel": "Cancel",
+      "canceled": "Canceled",
+      "finished": "Finished"
+    }
+  },
+  "sub_account": {
+    "sub_account_header": "Subaccount:",
+    "create": {
+      "button": "Create Subaccount",
+      "description": "Subaccounts can be used to isolate margin positions from each other and to limit your maximum risk exposure from a margin position.",
+      "title": "Create New Subaccount",
+      "success": "Create Success!",
+      "placeholder_name": "Subaccount Name:"
+    },
+    "delete": {
+      "title": "Are you sure you want to delete the subaccount",
+      "button_yes": "Yes, Delete It",
+      "description": "Make sure you have no open orders, no open positions, and no staked FTT in your subaccount. Any balances in the subaccount will be transferred to your main account.",
+      "success": "Delete Success!"
+    },
+    "transfer": {
+      "title": "Transfer Funds Between Subaccounts",
+      "placeholder_coin": "Coin",
+      "placeholder_source": "Source Account",
+      "placeholder_target": "Destination Account",
+      "amount": "Amount",
+      "max": "Max",
+      "button": "Transfer",
+      "success": "Transfer Success!"
+    },
+    "update": {
+      "update_success": "Update Success!"
+    },
+    "title_select_sub": "Select Account",
+    "subtitle_select_sub": "Subaccount",
+    "main_account": "Main Account",
+    "placeholder_name": "Subaccount Name:",
+    "error": "Error!"
+  }
+}

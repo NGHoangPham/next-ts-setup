@@ -1,0 +1,25 @@
+.root {
+  width: 100%;
+  position: relative;
+  padding: 21px 21px 12px 21px;
+}
+
+.listWrapper {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  margin-top: 15px;
+}
+
+.listItem {
+  height: 64px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgba(64, 69, 79, 0.25);
+  box-shadow: 0px 3px 6px #00000026;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -1,0 +1,6 @@
+.root {
+  padding-top: var(--nav-bar-height);
+  margin: 125px auto 25px auto;
+  min-height: calc(100vh - var(--nav-bar-height) - 150px);
+  width: 500px;
+}

@@ -1,0 +1,138 @@
+.root {
+  margin: 24px auto;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  padding: 15px;
+}
+.chartWrap {
+  flex-grow: 1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+.actionIcon {
+  color: #788686;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.textBlock {
+  display: block;
+}
+.textStrong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.textSmall {
+  font-size: 12px;
+  font-weight: 300;
+}
+.textDark {
+  color: #797979;
+}
+.textSuccess {
+  color: #00fe9a;
+}
+.textDanger {
+  color: #ff006a;
+}
+.sortIcon {
+  vertical-align: middle;
+}
+.percentage {
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.currentWrap {
+  text-align: center;
+  width: 95px;
+}
+.changeWrap {
+  width: 110px;
+}
+.highWrap,
+.lowWrap {
+  width: 65px;
+}
+.volumnWrap {
+  width: 80px;
+}
+
+.rightWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.actionWrap {
+  text-align: center;
+}
+
+.dropdown {
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+}
+.dropdownLabel {
+  display: inline-block;
+  margin-right: 7px;
+  color: #ffba00;
+}
+.fullChartButton {
+  border: none;
+  outline: none;
+  background: #40454f;
+  border-radius: 10px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+/* fullscreen */
+
+.fullscreen {
+  z-index: 999999;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  background: #2c303e;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.fullscreen .textStrong {
+  font-size: 18px;
+}
+.fullscreen .textSmall {
+  font-size: 14px;
+}
+.fullscreen .currentWrap,
+.fullscreen .changeWrap,
+.fullscreen .highWrap,
+.fullscreen .lowWrap,
+.fullscreen .volumnWrap {
+  width: auto;
+  margin-left: 50px;
+}
+.fullscreen .fullChartButton {
+  margin-right: 30px;
+}
+.fullscreen .dropdown {
+  font-size: 14px;
+}
+.fullscreen .dropdownLabel {
+  margin-right: 20px;
+}
+.fullscreen .actionIcon {
+  margin-left: 10px;
+}

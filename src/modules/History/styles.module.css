@@ -1,0 +1,22 @@
+.root {
+  padding-top: var(--nav-bar-height);
+  min-height: calc(100vh - var(--nav-bar-height));
+  margin: 24px auto;
+}
+
+@media (max-width: 1366px) {
+  .root {
+    margin: 24px 48px 48px 24px;
+  }
+}
+@media (max-width: 1250px) {
+  .userInfo {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .root {
+    margin-left: 48px;
+  }
+}

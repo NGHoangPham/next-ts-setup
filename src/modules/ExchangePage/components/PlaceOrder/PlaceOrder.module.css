@@ -1,0 +1,71 @@
+.root {
+  padding: 15px 15px 0;
+  height: 450px;
+}
+.header {
+  width: 100%;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(191, 193, 195, 0.25);
+}
+.iconClose {
+  margin-right: 5px;
+}
+
+.filterGroup {
+  width: 100%;
+}
+
+.available {
+  margin: 10px 0 7px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.walletIcon {
+  margin-right: 10px;
+}
+
+.walletText {
+  font-size: 12px;
+}
+
+.checkbox {
+  margin: 10px 0;
+}
+
+.ant-checkbox {
+  margin-right: 5px;
+}
+
+.buttonContainer {
+  width: 100%;
+  padding: 0 15px;
+  margin: 10px 0 20px;
+}
+
+.submitButton {
+  width: 100%;
+  margin-top: 10px;
+  height: 33px !important;
+  line-height: 11px !important;
+  text-transform: capitalize;
+}
+
+.root :global .ant-checkbox {
+  margin-right: 5px;
+}
+
+.root :global .ant-radio-button-wrapper span {
+  font-size: 10px !important;
+}
+
+.root :global .ant-radio-button-wrapper {
+  line-height: 22px !important;
+  height: 20px;
+}
+
+.root .filter {
+  padding: 3px 2px;
+  background-color: rgb(128 128 128 / 21%);
+}

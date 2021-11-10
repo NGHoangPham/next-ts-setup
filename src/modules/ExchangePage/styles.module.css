@@ -1,0 +1,11 @@
+.root {
+  padding-top: var(--nav-bar-height);
+  min-height: calc(100vh - var(--nav-bar-height));
+  margin: 24px auto;
+}
+.mainRow {
+  align-items: center !important;
+}
+.tradingChartCol {
+  z-index: 1;
+}

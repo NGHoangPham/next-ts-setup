@@ -1,0 +1,81 @@
+.rotate {
+  transform: rotate(180deg);
+}
+
+.root {
+  position: relative;
+}
+.triangle {
+  position: relative;
+  text-align: left;
+}
+
+.success {
+  background-color: var(--green-indicator);
+  margin-top: -2.5px;
+}
+
+.error {
+  background-color: var(--pink-indicator);
+  margin-top: -1.5px;
+}
+
+.triangle:before,
+.triangle:after {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+}
+.triangle,
+.triangle:before,
+.triangle:after {
+  border-top-right-radius: 30%;
+}
+
+.small,
+.small::before,
+.small::after {
+  width: 5px;
+  height: 5px;
+}
+
+.middle,
+.middle::before,
+.middle::after {
+  width: 6.5px;
+  height: 6.5px;
+}
+
+.large,
+.large::before,
+.large::after {
+  width: 8px;
+  height: 8px;
+}
+
+.triangle {
+  transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866);
+}
+.triangle:before {
+  transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
+}
+.triangle:after {
+  transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+}
+
+.stableContainer {
+  border-radius: 100rem;
+  background-color: var(--tint-3);
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 3px;
+}
+
+.stable {
+  background-color: #494b50;
+  width: 100%;
+  height: 100%;
+}

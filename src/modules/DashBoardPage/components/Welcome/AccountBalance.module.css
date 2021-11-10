@@ -1,0 +1,77 @@
+.root {
+  padding: 21px 24px 12px 21px;
+}
+
+.balanceWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balanceTextWrapper {
+  text-align: right;
+}
+
+.pnlTitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff80;
+}
+
+.pnlWrapper {
+  padding: 8px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 10px;
+}
+
+/* Deposit and withdraw */
+
+.card {
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgba(64, 69, 79, 0.25);
+  box-shadow: 0px 3px 6px #00000026;
+}
+
+.cardBalance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 25px;
+  padding-top: 15px;
+  height: 150px;
+}
+
+/* Portfolio */
+
+.cardPortfolio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
+  column-gap: 30px;
+  margin-bottom: 10px;
+}
+
+.cardPortfolio > div {
+  width: 100%;
+}
+
+.chartLabel {
+  position: relative;
+  width: 80%;
+  background-color: rgba(191, 193, 195, 0.15);
+  padding: 4px 10px 4px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chartLabel > span {
+  position: absolute;
+  left: -16px;
+}

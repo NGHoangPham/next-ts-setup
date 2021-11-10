@@ -1,0 +1,42 @@
+.bg {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+.circle1 {
+  width: calc(768px - 250px);
+  height: calc(768px - 250px);
+  background-color: #695a90;
+  position: absolute;
+  left: 33%;
+  top: 7%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  filter: blur(170px);
+}
+.circle2 {
+  width: calc(768px - 100px);
+  height: calc(768px - 100px);
+  background-color: #5a8690;
+  position: absolute;
+  left: 70%;
+  top: 10%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  filter: blur(140px);
+}
+
+.root {
+  position: relative;
+  background: none !important;
+  overflow-x: hidden;
+}
+
+.fullscreen {
+  z-index: 10;
+}
+.minHeight {
+  height: 1px;
+  overflow: hidden;
+}

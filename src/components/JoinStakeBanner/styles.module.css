@@ -1,0 +1,71 @@
+.card {
+  padding: 25px 26px;
+  height: 211px;
+  box-shadow: 0px 0px 10px #00000026;
+  border-radius: 10px;
+  position: relative;
+  border: 2px solid #4e79f82c;
+  background: linear-gradient(109deg, #011336 0%, var(--blue-contrast) 100%) 0% 0% no-repeat padding-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.imgWrapper {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.imgWrapper > img {
+  position: relative;
+}
+
+.leftWrapper {
+  width: 132px;
+}
+
+.bigTitle {
+  font-size: 45px !important;
+  line-height: 57px !important;
+  font-weight: 900 !important;
+  margin-bottom: 12px !important;
+}
+
+.blueText {
+  color: var(--accent-blue);
+  font-size: 24px;
+  line-height: 21px;
+}
+
+.rightWrapper {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.percentInfo {
+  background: var(--accent-blue);
+  box-shadow: 0px 0px 10px #00000026;
+  border-radius: 5px;
+  width: 137px;
+  height: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  font-family: Avenir;
+}
+
+.percentInfo > span {
+  margin-left: 10px;
+}
+
+.btn {
+  position: absolute;
+  right: 26px;
+  bottom: -20px;
+  z-index: 1;
+}

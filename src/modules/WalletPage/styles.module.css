@@ -1,0 +1,17 @@
+.root {
+  padding-top: var(--nav-bar-height);
+  min-height: calc(100vh - var(--nav-bar-height));
+  padding-bottom: 100px;
+}
+
+@media (max-width: 1250px) {
+  .userInfo {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .root {
+    margin: 0 48px;
+  }
+}

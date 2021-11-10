@@ -1,0 +1,86 @@
+.root {
+  padding: 24px;
+  margin-bottom: 48px;
+}
+
+.btnSubmit {
+  position: absolute;
+  right: 21px;
+  bottom: -20px;
+  z-index: 1;
+}
+
+.headInfo {
+  height: 98px;
+  margin-bottom: 40px;
+}
+
+.form {
+  margin-bottom: 48px;
+}
+
+.text {
+  border-bottom: 1px solid #797979;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.btnEdit {
+  position: relative !important;
+  float: right;
+  right: 30px;
+  top: -70px;
+  z-index: 1;
+}
+
+.title {
+  font-size: 16px;
+  color: #ffffff;
+  padding-left: 0 !important;
+  text-align: left;
+  font-weight: 400;
+  letter-spacing: 0.16px;
+  opacity: 1;
+  cursor: pointer;
+  width: fit-content;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.switcher {
+  display: flex;
+  height: 44px !important;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  box-shadow: 0px 0px 10px #00000026;
+  border: 2px solid #5f5f5f26;
+  border-radius: 10px;
+  padding-left: 20px;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.switcherBtn {
+  margin-right: 24px;
+}
+
+.root :global .ant-switch {
+  background-color: var(--pink-indicator);
+  border: none !important;
+  box-shadow: none !important;
+}
+.root :global .ant-switch-checked {
+  background-color: var(--success);
+}
+
+.root :global .ant-switch-handle::before {
+  background-image: url('/images/svgs/slider.svg');
+  width: 18px;
+  height: 18px;
+}
+
+.root :global .ant-select-single.ant-select-show-arrow {
+  padding-right: 12px !important;
+}
