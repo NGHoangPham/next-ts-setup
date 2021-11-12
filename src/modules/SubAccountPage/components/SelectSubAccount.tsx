@@ -94,7 +94,7 @@ const SelectSubAccount: FC = () => {
                             >
                               <Form.Item
                                 name="subAccountName"
-                                label={t('sub_account.placeholder_name')}
+                                label={t('sub_account.placeholder_name_error')}
                                 rules={[{ required: true }]}
                               >
                                 <Input onChange={onChangeInput} />

@@ -64,9 +64,14 @@ export const FileUpload: React.FC<FileUploadProps> = ({
       >
         <div className={clsx(styles.backgroundWrap)}>
           {file ? (
-            <img className={clsx(styles.uploadFileImage)} src={URL.createObjectURL(file)} />
+            <img className={clsx(styles.uploadFileImage)} alt="preview" src={URL.createObjectURL(file)} />
           ) : background ? (
-            <img className={clsx(styles.uploadBackground)} src={background} style={{ height: backgroundHeight }} />
+            <img
+              className={clsx(styles.uploadBackground)}
+              alt="preview"
+              src={background}
+              style={{ height: backgroundHeight }}
+            />
           ) : null}
           {/* {file !== null ? <p>{file?.name}</p> : null} */}
         </div>

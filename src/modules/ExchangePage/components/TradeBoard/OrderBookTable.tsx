@@ -57,6 +57,7 @@ export const OrderBookTable: FC = memo(() => {
       },
     ]);
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listPairValue, currentPair]);
 
   // convert data
@@ -125,6 +126,7 @@ export const OrderBookTable: FC = memo(() => {
     setLoading(false);
     setBidsDatatables(dataBids);
     setAsksDatatables(dataAsks);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataDepth]);
 
   // scroll bottom of asks panel when currentPair change
@@ -133,6 +135,7 @@ export const OrderBookTable: FC = memo(() => {
       asksTableRef.current.scrollTop = asksTableRef.current.scrollHeight;
       pairDisplayAsksRef.current = currentPair;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asksDatatables]);
 
   // scroll bottom of bids panel when currentPair change
@@ -141,6 +144,7 @@ export const OrderBookTable: FC = memo(() => {
       bidsTableRef.current.scrollTop = 0;
       pairDisplayBidsRef.current = currentPair;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bidsDatatables]);
 
   const getColumns = (): any[] => {
@@ -186,6 +190,7 @@ export const OrderBookTable: FC = memo(() => {
         row.classList.remove('appAsksRowHover');
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hoverAsksIndex]);
   useEffect(() => {
     fnCalcDataExchange('bids', hoverBidsIndex);
@@ -197,6 +202,7 @@ export const OrderBookTable: FC = memo(() => {
         row.classList.remove('appBidsRowHover');
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hoverBidsIndex]);
 
   useEffect(() => setLoading(true), []);

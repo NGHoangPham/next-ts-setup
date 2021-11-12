@@ -12,17 +12,10 @@ export type SelectProps = Partial<AntdSelectProps<any>> & {
 
 const { Option } = AntdSelect;
 
-const SelectWithLabel: FC<SelectProps> = ({
-  label,
-  id,
-  // className,
-  children,
-  size = 'middle',
-  ...props
-}) => {
+const SelectWithLabel: FC<SelectProps> = ({ label, id, children, size = 'middle', ...props }) => {
   const inputWithSize = styles[size];
   return (
-    <SurfaceLabel id={id} label={label} size={size}>
+    <SurfaceLabel id={id} label={label} size={size} className={styles.root}>
       <AntdSelect dropdownClassName={styles.dropdown} className={clsx(styles.input, inputWithSize)} {...props}>
         {children}
       </AntdSelect>

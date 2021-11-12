@@ -13,7 +13,8 @@ import { InputNumber } from 'components/Input';
 import { useMutation } from 'react-query';
 import { getCoinsWithSubAccount, TListSubAccount, transferBetweenSub } from 'api/sub_account';
 import { getWalletQuery } from 'api/wallet/request';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
+import { TError } from 'api/types';
 
 export interface TransferSubAccountProps {
   className?: string;
@@ -47,8 +48,8 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
       setSource('');
       setCoin('');
     },
-    onError: (error: any) => {
-      message.error(error);
+    onError: (error: TError) => {
+      message.error(error.message);
     },
   });
 
@@ -58,8 +59,8 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
       const dataCoin = data?.coins?.filter((item: any) => item.coinType === coin);
       setDataCoin(dataCoin);
     },
-    onError: (error: any) => {
-      message.error(error);
+    onError: (error: TError) => {
+      message.error(error.message);
     },
   });
 
@@ -69,13 +70,13 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
       accountId: value,
     };
     mutateCoinSub(requestCoinSub);
+    form.resetFields(['amount']);
   };
 
   useEffect(() => {
     mutateWallet();
     setCoin('');
     form.resetFields();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSubAccount]);
 
   useEffect(() => {
@@ -100,7 +101,7 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
       const dataCoin = data?.coins?.filter((item: any) => item.coinType === coin);
       setDataCoin(dataCoin);
     },
-    onError: (error: any) => {
+    onError: (error: TError) => {
       message.error(error.message);
     },
   });
@@ -109,13 +110,19 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
     setCoin(value);
     const dataCoin = dataWallet?.filter((item: any) => item.coinType === value);
     setDataCoin(dataCoin);
+    form.resetFields(['amount']);
   };
 
-  const checkAmount = (_: any, value: { number: number }) => {
-    if (value.number > 0) {
+  const checkAmount = (_: any, value: number) => {
+    if (value > 0) {
       return Promise.resolve();
     }
     return Promise.reject(new Error('Amount must be greater than zero!'));
+  };
+
+  const setTargetAccount = (value: any) => {
+    setTarget(value);
+    form.resetFields(['amount']);
   };
 
   return (
@@ -125,7 +132,7 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
       </Col>
       <Form name="transfer_sub_account" onFinish={onTransfer} form={form}>
         <Row gutter={[24, 24]}>
-          <Col lg={{ span: 8 }}>
+          <Col md={24} lg={10} sm={24}>
             <Form.Item name="coin" label={t('sub_account.transfer.placeholder_coin')} rules={[{ required: true }]}>
               <SelectWithLabel
                 label={t('sub_account.transfer.placeholder_coin')}
@@ -146,7 +153,7 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
           </Col>
         </Row>
         <Row gutter={[24, 0]}>
-          <Col md={24} lg={8}>
+          <Col md={24} lg={10} sm={24}>
             <Form.Item
               name="sourceAccount"
               label={t('sub_account.transfer.placeholder_source')}
@@ -173,7 +180,7 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
               </SelectWithLabel>
             </Form.Item>
           </Col>
-          <Col md={24} lg={8}>
+          <Col md={24} lg={10} sm={24}>
             <Form.Item
               name="targetAccount"
               label={t('sub_account.transfer.placeholder_target')}
@@ -182,7 +189,7 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
               <SelectWithLabel
                 label={t('sub_account.transfer.placeholder_target')}
                 value={targetAccount}
-                onChange={(value) => setTarget(value)}
+                onChange={(value) => setTargetAccount(value)}
               >
                 {sourceAccount !== mainAccountId ? (
                   <Option key={'Main Account'} value={mainAccountId}>
@@ -200,54 +207,51 @@ export const TransferSubAccount: FC<TransferSubAccountProps> = () => {
             </Form.Item>
           </Col>
         </Row>
-        <Row gutter={[12, 0]} align="top">
+        <>
           {coin && (
             <>
-              <Col>
-                <p className={styles.amountTitle}>{t('sub_account.transfer.amount')}</p>
-              </Col>
-              <Col span={5} className={styles.amountWrapper}>
-                <Form.Item
-                  name="amount"
-                  label={t('sub_account.transfer.amount')}
-                  className={styles.amount}
-                  rules={[{ required: true, validator: checkAmount }]}
-                >
-                  <InputNumber
-                    min={0}
-                    max={dataCoin[0]?.assessment}
-                    defaultValue={0}
-                    formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  />
-                </Form.Item>
-              </Col>
-              <Col className={styles.amountWrapper}>
-                <Button
-                  className={styles.btnMax}
-                  type="primary"
-                  onClick={() =>
-                    form.setFieldsValue({
-                      amount: parseFloat(dataCoin[0]?.assessment),
-                    })
-                  }
-                >
-                  {t('sub_account.transfer.max')}
-                </Button>
-              </Col>
-              <Col span={15} />
-              <Col>
-                <p>
+              <Row gutter={[12, 0]} align="top">
+                <Col>
+                  <p className={styles.amountTitle}>{t('sub_account.transfer.amount')}</p>
+                </Col>
+                <Col lg={5} md={6} sm={8} className={styles.amountWrapper}>
+                  <Form.Item
+                    name="amount"
+                    label={t('sub_account.transfer.amount')}
+                    className={styles.amount}
+                    rules={[{ required: true, validator: checkAmount }]}
+                  >
+                    <InputNumber min={0} max={dataCoin[0]?.assessment} defaultValue={0} />
+                  </Form.Item>
+                </Col>
+                <Col lg={3} className={styles.amountWrapper}>
+                  <Button
+                    className={styles.btnMax}
+                    type="primary"
+                    onClick={() =>
+                      form.setFieldsValue({
+                        amount: parseFloat(dataCoin[0]?.assessment),
+                      })
+                    }
+                  >
+                    {t('sub_account.transfer.max')}
+                  </Button>
+                </Col>
+                {/* <Col lg={15} /> */}
+              </Row>
+              <Row className={styles.titleMax}>
+                <Col>
                   {t('sub_account.transfer.max')}
                   {sttCoinSub === 'loading' || statusWallet === 'loading' ? (
                     <Spin className={styles.spin} />
                   ) : (
                     `: ${dataCoin[0]?.assessment} ${coin}`
                   )}
-                </p>
-              </Col>
+                </Col>
+              </Row>
             </>
           )}
-        </Row>
+        </>
         <Row gutter={[24, 0]}>
           <Col lg={{ span: 3 }}>
             <Button htmlType="submit" className={styles.btnSubmit} loading={sttTransferSub === 'loading'}>

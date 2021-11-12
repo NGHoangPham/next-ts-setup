@@ -61,7 +61,7 @@ const getColumns = (t: Function): ColumnsType<THistoryData> => [
     sorter: (a: any, b: any) => a.price - b.price,
     showSorterTooltip: false,
     render(price, record) {
-      return record.orderType === 'MARKET' ? 'Market Price' : nDecimalFormat(price, 2);
+      return record.orderType === 'MARKET' ? 'Market Price' : nDecimalFormat(price, 8);
     },
   },
   {
@@ -82,7 +82,7 @@ const getColumns = (t: Function): ColumnsType<THistoryData> => [
     showSorterTooltip: false,
     render(total, record: any) {
       const pairSplit = record.pair.split('_');
-      return `${nDecimalFormat(total, 2)} ${pairSplit[1]}`;
+      return `${nDecimalFormat(total, 8)} ${pairSplit[1]}`;
     },
   },
 ];
@@ -93,7 +93,7 @@ export const TradeHistory: FC<TTradeHistory> = ({ onChangePage }) => {
   const { tradeHistoryList, pageInfo, isLoadingHistory } = useAppSelector((state) => state.history);
   const { t } = useTranslation();
 
-  const columns = useMemo(() => getColumns(t), []);
+  const columns = useMemo(() => getColumns(t), [t]);
   return (
     <div>
       <div className={styles.table}>

@@ -37,7 +37,6 @@ module.exports = withPlugins(plugins, {
   images: {},
   api: {
     bodyParser: false,
-    externalResolver: true,
   },
   i18n,
   typescript: {

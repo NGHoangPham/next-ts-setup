@@ -46,14 +46,15 @@ export const StopOrder: FC<StopOrderProps> = ({
   const { t } = useTranslation();
   const isAuthenticated = true; // check later
   const { orderBookSelect } = useAppSelector((state) => state.exchange);
+  const { currentPairValue } = useAppSelector((state) => state.exchange);
   const [visible, setVisible] = useState<boolean>(false);
   const [data, setData] = useState<Data>({
     iceberg: false,
-    stop: undefined,
-    limit: undefined,
-    amount: undefined,
-    total: undefined,
-    amountIceberg: undefined,
+    stop: 0,
+    limit: 0,
+    amount: 0,
+    total: 0,
+    amountIceberg: 0,
   });
   const [slider, setSlider] = useState<number>(0);
 
@@ -80,6 +81,7 @@ export const StopOrder: FC<StopOrderProps> = ({
         total: priceSelect * amountSelect,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderBookSelect]);
 
   const { mutateAsync: mutatePlaceOrderMarket, status: placeOrderStatus } = useMutation(placeOrderMarket, {
@@ -132,11 +134,9 @@ export const StopOrder: FC<StopOrderProps> = ({
         setVisible(true);
     }
   };
-
   const handleLogin = () => {
     window.location.href = '/api/auth/login';
   };
-
   const maxAmount = filterSide === 'buy' ? available / (data?.limit || 1) : available;
 
   return (
@@ -166,6 +166,7 @@ export const StopOrder: FC<StopOrderProps> = ({
         coin={moneyCoin}
         decimalAmount={moneyCoinDecimalAmount}
         title={t('exchange.place_order.stop')}
+        precision={currentPairValue?.[3]}
       />
       <InputTrade
         value={data.limit}
@@ -175,6 +176,7 @@ export const StopOrder: FC<StopOrderProps> = ({
         coin={moneyCoin}
         decimalAmount={moneyCoinDecimalAmount}
         title={t('exchange.place_order.limit')}
+        precision={currentPairValue?.[3]}
       />
       <InputTrade
         value={data.amount}
@@ -185,6 +187,7 @@ export const StopOrder: FC<StopOrderProps> = ({
         coin={coin}
         decimalAmount={coinDecimalAmount}
         title={t('exchange.place_order.amount')}
+        precision={currentPairValue?.[2]}
       />
       <InputSlider
         value={slider}
@@ -203,6 +206,7 @@ export const StopOrder: FC<StopOrderProps> = ({
         coin={moneyCoin}
         decimalAmount={moneyCoinDecimalAmount}
         title={t('exchange.place_order.total')}
+        precision={currentPairValue?.[2]}
       />{' '}
       <div className={styles.checkbox}>
         <Checkbox

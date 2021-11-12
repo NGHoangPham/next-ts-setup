@@ -86,6 +86,7 @@ const OrdersHistory: FC<OrdersHistoryProps> = memo(({ openOrdersList, loadingOpe
         mutateTradeHistory(data);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

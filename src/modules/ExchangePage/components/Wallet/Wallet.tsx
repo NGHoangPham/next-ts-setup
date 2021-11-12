@@ -38,7 +38,7 @@ const Wallet: FC<WalletProps> = () => {
           walletData?.coins
             .filter((item: WalletTableItem) => currentPair?.includes(item.coinType))
             .map((item: WalletTableItem, index: number) => (
-              <WalletAmountCoin coin={item?.coinType} key={index} value={item?.number} />
+              <WalletAmountCoin coin={item?.coinType} key={index} value={item?.number} assessment={item?.assessment} />
             ))}
       </div>
       <Space className={styles.bottomContainer}>

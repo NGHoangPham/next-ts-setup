@@ -9,11 +9,10 @@ import { useAppSelector } from 'hooks';
 import { placeOrderMarket } from 'api/market';
 import { useMutation } from 'react-query';
 import { TError } from 'api/types';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { fixed } from 'utils/number';
 import { getOrderBookSelect } from 'store/ducks/exchange/slice';
 import { useUser } from '@auth0/nextjs-auth0';
-
 interface LimitOrderProps {
   filterSide: 'buy' | 'sell';
   available: number;
@@ -49,19 +48,19 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
     const { t } = useTranslation();
     const { user } = useUser();
     const orderBookSelect = useAppSelector(getOrderBookSelect);
+    const { currentPairValue } = useAppSelector((state) => state.exchange);
     const [data, setData] = useState<Data>({
       iceberg: false,
       makeOrder: true,
-      price: undefined,
-      amount: undefined,
-      total: undefined,
-      amountIceberg: undefined,
+      price: 0,
+      amount: 0,
+      total: 0,
+      amountIceberg: 0,
       slider: 0,
     });
-
     const [slider, setSlider] = useState<number>(0);
-
     const [amountIceberg, setAmountIceberg] = useState(0);
+    const maxAmount = filterSide === 'buy' && data.price ? available / data.price : available;
 
     useEffect(() => {
       if (orderBookSelect?.price) {
@@ -75,9 +74,10 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
         });
         setSlider((amountSelect / maxAmount) * 100);
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [orderBookSelect]);
 
-    const { mutateAsync: mutatePlaceOrderMarket, status: placeOrderStatus } = useMutation(placeOrderMarket, {
+    const { mutateAsync: mutatePlaceOrder, status: placeOrderStatus } = useMutation(placeOrderMarket, {
       onSuccess: () => {
         Toast('success', t('exchange.place_order.order_success'));
         refetch();
@@ -92,19 +92,11 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
     };
 
     const handleChangeAmount = (value: number) => {
-      if (value >= maxAmount) {
-        setData({
-          ...data,
-          amount: maxAmount,
-          total: maxAmount * (data?.price || 0),
-        });
-      } else {
-        setData({
-          ...data,
-          amount: value,
-          total: value * (data?.price || 0),
-        });
-      }
+      setData({
+        ...data,
+        amount: value,
+        total: value * (data?.price || 0),
+      });
     };
 
     const handleChangePrice = (value: number) => {
@@ -143,15 +135,12 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
           Toast('error', t('exchange.place_order.not_enough_balance'));
           break;
         default:
-          mutatePlaceOrderMarket(orderData);
+          mutatePlaceOrder(orderData);
       }
     };
-
     const handleLogin = () => {
       window.location.href = '/api/auth/login';
     };
-
-    const maxAmount = filterSide === 'buy' && data.price ? available / data.price : available;
 
     return (
       <>
@@ -163,6 +152,7 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
           coin={moneyCoin}
           title={t('exchange.place_order.price')}
           decimalAmount={moneyCoinDecimalAmount}
+          precision={currentPairValue?.[3]}
         />
         <InputTrade
           value={data.amount}
@@ -173,6 +163,7 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
           coin={coin}
           title={t('exchange.place_order.amount')}
           decimalAmount={coinDecimalAmount}
+          precision={currentPairValue?.[2]}
         />
         <InputSlider
           value={slider}
@@ -191,6 +182,7 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
           coin={moneyCoin}
           title={t('exchange.place_order.total')}
           decimalAmount={moneyCoinDecimalAmount}
+          precision={currentPairValue?.[3]}
         />
         <div className={styles.checkbox}>
           <Checkbox
@@ -211,6 +203,7 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
             coin={coin}
             decimalAmount={coinDecimalAmount}
             title={t('exchange.place_order.amount')}
+            precision={currentPairValue?.[2]}
           />
         )}
         <div className={styles.checkbox}>

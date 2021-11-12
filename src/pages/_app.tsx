@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import { FC, useState, useEffect } from 'react';
 import 'styles/globals.less';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Provider } from 'react-redux';
@@ -43,6 +44,8 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>ultorex</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <script src="/datafeeds/udf/dist/polyfills.js"></script>
+        <script src="/datafeeds/udf/dist/bundle.js"></script>
       </Head>
       <Provider store={store}>
         <UserProvider>

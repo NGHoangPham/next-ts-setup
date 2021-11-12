@@ -70,7 +70,7 @@ const getColumns = (t: Function): ColumnsType<THistoryData> => [
     sorter: (a: any, b: any) => a.avgPrice - b.avgPrice,
     showSorterTooltip: false,
     render(avgPrice) {
-      return nDecimalFormat(avgPrice, 2);
+      return nDecimalFormat(avgPrice, 8);
     },
   },
   {
@@ -80,7 +80,7 @@ const getColumns = (t: Function): ColumnsType<THistoryData> => [
     sorter: (a: any, b: any) => a.price - b.price,
     showSorterTooltip: false,
     render(price, record) {
-      return record.orderType === 'MARKET' ? 'Market Price' : nDecimalFormat(price, 2);
+      return record.orderType === 'MARKET' ? 'Market Price' : nDecimalFormat(price, 8);
     },
   },
   {
@@ -101,7 +101,7 @@ const getColumns = (t: Function): ColumnsType<THistoryData> => [
     showSorterTooltip: false,
     render(filled, record: any) {
       const pairSplit = record.pair.split('_');
-      return `${nDecimalFormat(filled, 2)} ${pairSplit[1]}`;
+      return `${nDecimalFormat(filled, 8)} ${pairSplit[1]}`;
     },
   },
   {

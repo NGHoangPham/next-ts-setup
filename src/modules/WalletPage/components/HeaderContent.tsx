@@ -45,6 +45,7 @@ const HeaderContent: FC<HeaderContentProps> = ({ assessment, coins, marketList }
     setTotalNumber(`
       ${!totalResult ? '0.00' : nDecimalFormat(totalResult.toString(), 8)}
     `);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assessment, marketList]);
 
   return (

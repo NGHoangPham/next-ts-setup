@@ -6,7 +6,7 @@ import Logo from 'assets/images/logo.svg';
 export const LoadingFullpage: FC = () => {
   return (
     <div className={styles.root}>
-      <img src={Logo} className={styles.logo} />
+      <img src={Logo} className={styles.logo} alt="logo" />
       <Spin />
     </div>
   );

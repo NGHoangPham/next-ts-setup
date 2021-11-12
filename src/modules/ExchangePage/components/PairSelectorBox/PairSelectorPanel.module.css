@@ -199,3 +199,24 @@
 .closeDropdownButton:hover {
   color: #fff;
 }
+
+@media (max-width: 1366px) {
+  .dropdownWrap {
+    left: 65%;
+  }
+}
+@media (max-width: 576px) {
+  .dropdownPanel {
+    width: 400px;
+  }
+
+  .dropdownWrap {
+    left: 50%;
+  }
+}
+
+@media (min-width: 576px) {
+  .dropdownContent :global .filled {
+    background-color: #00fe9a;
+  }
+}

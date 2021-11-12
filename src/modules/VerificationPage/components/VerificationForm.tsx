@@ -14,6 +14,7 @@ const VerificationForm: React.FC = () => {
 
   useEffect(() => {
     inputRefs.current = inputRefs.current.slice(0, code.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCodeChange = (data: NumberFormatValues, idx: number) => {

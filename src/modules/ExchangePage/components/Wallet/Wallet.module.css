@@ -2,7 +2,23 @@
   padding: 12px;
   height: 584px;
 }
+@media (max-width: 768px) {
+  .wallet {
+    height: fit-content;
+  }
 
+  .bottomContainer {
+    position: relative !important;
+    bottom: 0 !important;
+    top: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .wallet {
+    height: 450px;
+  }
+}
 .item {
   justify-content: space-between;
   display: flex;

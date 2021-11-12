@@ -28,34 +28,44 @@ const PairSelector: React.FC<PairSelectorProps> = ({ convertData }) => {
   }, [currentPair]);
 
   return (
-    <div className={styles.symbolWrap}>
-      <div
-        className={styles.symbol}
-        onClick={() => {
-          setShowingDropdown(true);
-        }}
-      >
-        <img alt="coin" className={styles.coinImage} src={coinImage} />
-        <label className={styles.symbolLabel}>{currentPair ? currentPair.replace('_', '/') : '__/__'}</label>
-        <button type="button" className={styles.iconChevronDown}>
-          <FontAwesomeIcon icon={faChevronDown} />
-        </button>
-      </div>
-
+    <div className={styles.wrapper}>
       {showingDropdown && (
-        <PairSelectorPanel
-          visible={showingDropdown}
-          onClose={() => {
+        <div
+          className={styles.blur}
+          onClick={() => {
             setShowingDropdown(false);
           }}
-          isDropdown={true}
-          convertData={convertData}
-          filterType={filterType}
-          onChangeFilterType={setFilterType}
-          fiat={fiat}
-          onChangeFiat={setFiat}
         />
       )}
+      <div className={styles.symbolWrap}>
+        <div
+          className={styles.symbol}
+          onClick={() => {
+            setShowingDropdown(true);
+          }}
+        >
+          <img alt="coin" className={styles.coinImage} src={coinImage} />
+          <label className={styles.symbolLabel}>{currentPair ? currentPair.replace('_', '/') : '__/__'}</label>
+          <button type="button" className={styles.iconChevronDown}>
+            <FontAwesomeIcon icon={faChevronDown} />
+          </button>
+        </div>
+
+        {showingDropdown && (
+          <PairSelectorPanel
+            visible={showingDropdown}
+            onClose={() => {
+              setShowingDropdown(false);
+            }}
+            isDropdown={true}
+            convertData={convertData}
+            filterType={filterType}
+            onChangeFilterType={setFilterType}
+            fiat={fiat}
+            onChangeFiat={setFiat}
+          />
+        )}
+      </div>
     </div>
   );
 };

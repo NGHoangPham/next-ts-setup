@@ -1,3 +1,19 @@
+.wrapper {
+  display: inline-block;
+}
+
+.blur {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  z-index: 2;
+  display: block;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+
 .symbolWrap {
   position: relative;
   display: flex;
@@ -9,6 +25,7 @@
   border-radius: 50px;
   background: #40454f;
   width: 176px;
+  z-index: 2;
 }
 
 .symbolLabel {

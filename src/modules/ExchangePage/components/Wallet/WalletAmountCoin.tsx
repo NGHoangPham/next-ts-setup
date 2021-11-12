@@ -1,14 +1,19 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { currencyImgs } from 'assets/images/currency';
 import { Avatar } from 'components/Avatar';
 import styles from './Wallet.module.css';
-import { nDecimalFormat } from 'utils/number';
+import { nDecimalFormat, nDecimalFormatNoZero } from 'utils/number';
 
 interface WalletAmountCoinProps {
   coin: string;
   value: string;
+  assessment: string;
 }
-const WalletAmountCoin: FC<WalletAmountCoinProps> = ({ coin, value }) => {
+const WalletAmountCoin: FC<WalletAmountCoinProps> = ({ coin, value, assessment }) => {
+  const usdText = useMemo(() => {
+    return assessment ? `$${nDecimalFormat(assessment, 2)}` : '';
+  }, [assessment]);
+
   return (
     <div className={styles.walletCoin}>
       <Avatar
@@ -19,13 +24,10 @@ const WalletAmountCoin: FC<WalletAmountCoinProps> = ({ coin, value }) => {
       />
       <div className={styles.walletAmount}>
         <div>
-          <span>{nDecimalFormat(value, 2)}</span>
+          <span>{nDecimalFormatNoZero(value, 8, 2)}</span>
         </div>
-        <div
-          className={styles.usdAmount}
-          title={`$${nDecimalFormat('' + (coin === 'USDT' ? value : Number(value) * 23000), 2)}`}
-        >
-          ${nDecimalFormat('' + (coin === 'USDT' ? value : Number(value) * 23000), 2)}
+        <div className={styles.usdAmount} title={usdText}>
+          {usdText}
         </div>
       </div>
     </div>

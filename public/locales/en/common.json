@@ -330,7 +330,7 @@
       "total": "total",
       "amount": "amount",
       "iceberg": "Iceberg",
-      "make_order": "Make Order",
+      "make_order": "Maker Order",
       "buy": "buy",
       "sell": "sell",
       "stop": "stop",
@@ -390,6 +390,7 @@
     "subtitle_select_sub": "Subaccount",
     "main_account": "Main Account",
     "placeholder_name": "Subaccount Name:",
+    "placeholder_name_error": "Subaccount name",
     "error": "Error!"
   }
 }

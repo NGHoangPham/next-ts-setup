@@ -1,9 +1,9 @@
-import { FC, memo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { Surface } from 'components/Surface';
 import styles from './InputTrade.module.css';
 import { Input } from 'components/Input';
-import { InputNumber } from 'antd';
-import { fixed } from 'utils/number';
+import { InputNumber, Row, Col } from 'antd';
+import { fixed, nDecimalFormatNoZero } from 'utils/number';
 
 type InputTradeProps = {
   value?: number | undefined;
@@ -14,27 +14,46 @@ type InputTradeProps = {
   type?: string;
   text?: string;
   decimalAmount?: number;
+  precision?: number | undefined;
 };
 
 // eslint-disable-next-line react/display-name
 export const InputTrade: FC<InputTradeProps> = memo(
-  ({ coin, value, title, disabled, onChange, type, text, decimalAmount }: InputTradeProps) => {
+  ({ coin, value, title, disabled, onChange, type, text, decimalAmount, precision }: InputTradeProps) => {
+    const step = useMemo(() => {
+      let value = precision;
+      return value ? 1 / Math.pow(10, value) : undefined;
+    }, [precision]);
+
+    const formatter = useMemo(() => {
+      return (value: any) => {
+        return nDecimalFormatNoZero('' + value, precision ?? 2);
+      };
+    }, [precision]);
+
     return (
       <Surface className={styles.root}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.value}>
-          {type === 'text' ? (
-            <Input value={text} className={styles.input} disabled={disabled} />
-          ) : (
-            <InputNumber
-              value={decimalAmount && value ? Number(fixed('' + value, Number(decimalAmount))) : value}
-              onChange={onChange}
-              className={styles.input}
-              disabled={disabled}
-            />
-          )}
-          <span className={styles.coin}>{coin}</span>
-        </div>
+        <Row align="middle" justify="space-between">
+          <Col span={4} className={styles.title}>
+            {title}
+          </Col>
+          <Col span={20} className={styles.value}>
+            {type === 'text' ? (
+              <Input value={text} className={styles.input} disabled={disabled} />
+            ) : (
+              <InputNumber
+                value={decimalAmount && value ? Number(fixed('' + value, Number(decimalAmount))) : value}
+                onChange={onChange}
+                className={styles.input}
+                disabled={disabled}
+                min={0}
+                step={step}
+                formatter={formatter}
+              />
+            )}
+            <span className={styles.coin}>{coin}</span>
+          </Col>
+        </Row>
       </Surface>
     );
   }

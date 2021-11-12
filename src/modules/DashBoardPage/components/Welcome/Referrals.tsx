@@ -80,15 +80,15 @@ const Referrals: FC = () => {
           <div className={clsx(styles.card, styles.cardStatictis, 'f-center')}>
             <Space size={32} split={<div className="divider-y" />}>
               <Space className={styles.statictisItem}>
-                <Avatar type="secondary" size={25} src={Pending} />
+                <Avatar type="secondary" size={25} src={Pending.src} />
                 <span className={styles.clock}>{referralCount && referralCount.registration_only_count}</span>
               </Space>
               <Space className={styles.statictisItem}>
-                <Avatar type="secondary" size={25} src={Success} />
+                <Avatar type="secondary" size={25} src={Success.src} />
                 <span className={styles.check}>{referralCount && referralCount.kyc_count}</span>
               </Space>
               <Space className={styles.statictisItem}>
-                <Avatar type="secondary" size={25} src={Yellow} />
+                <Avatar type="secondary" size={25} src={Yellow.src} />
                 <span className={styles.bull}>{referralCount && referralCount.qualified_count}</span>
               </Space>
             </Space>

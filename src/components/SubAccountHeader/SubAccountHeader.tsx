@@ -76,7 +76,7 @@ export const SubAccountHeader: FC<SubAccountProps> = () => {
               ))}
             </Tabs>
           </Col>
-          <Col lg={4}>
+          <Col span={4}>
             <Button size="middle" className={styles.btnAction} onClick={() => dispatch(setModalCreate(true))}>
               <FontAwesomeIcon icon={faPlus} />
             </Button>

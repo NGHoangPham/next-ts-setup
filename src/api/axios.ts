@@ -14,9 +14,11 @@ export const request = axios.create({
 });
 
 const handleSuccess = (res: AxiosResponse) => {
-  if (res.data?.code !== 0) {
+  if (res.data?.code >= 400) {
     const errorCode = `error:${res.data.msg_code}`;
-    if (typeof res.data !== 'object') {
+
+    // !Some request that return string instead of object
+    if (typeof res.data !== 'object' && res.data !== 'disabled') {
       res.data = { message: i18n?.t(defaultErrorCode) };
     } else {
       res.data.message = i18n?.exists(errorCode) ? i18n?.t(errorCode) : i18n?.t(defaultErrorCode);

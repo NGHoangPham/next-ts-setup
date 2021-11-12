@@ -23,7 +23,7 @@ export interface TSystemReducer {
 
 const initialState = {
   language: getCookies(USER_COOKIES.language),
-  languageType: getCookies(USER_COOKIES.language) === 'en-US' ? 2 : 5,
+  languageType: getCookies(USER_COOKIES.language) === 'en' ? 2 : 5,
   exchange: {
     quickOrder: false,
     market: true,

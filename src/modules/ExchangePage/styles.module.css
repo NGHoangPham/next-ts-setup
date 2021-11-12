@@ -9,3 +9,9 @@
 .tradingChartCol {
   z-index: 1;
 }
+
+@media (max-width: 1366px) {
+  .root {
+    margin: 24px;
+  }
+}

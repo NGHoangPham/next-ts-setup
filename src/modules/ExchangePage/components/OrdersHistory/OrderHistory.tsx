@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Space, Table } from 'antd';
 import dayjs from 'dayjs';
-import { nDecimalFormat } from 'utils/number';
+import { nDecimalFormat, nDecimalFormatNoZero } from 'utils/number';
 import numeral from 'numeral';
 import { useAppSelector } from 'hooks';
 import styles from './OrdersHistory.module.css';
@@ -76,25 +76,29 @@ const OrderHistory: FC<TOrderHistory> = ({ onChangePage, precisionsConfigs }) =>
       },
     },
     {
-      title: t('historypage.columns.avgPrice'),
-      key: 'avgPrice',
-      dataIndex: 'avgPrice',
-      sorter: (a: any, b: any) => a.avgPrice - b.avgPrice,
-      showSorterTooltip: false,
-      render(avgPrice, item: any) {
-        return nDecimalFormat(avgPrice, precisionsConfigs?.[item.pair]?.money ?? 8);
-      },
-    },
-    {
       title: t('historypage.columns.price'),
       key: 'price',
       dataIndex: 'price',
       sorter: (a: any, b: any) => a.price - b.price,
       showSorterTooltip: false,
       render(price, record: any) {
+        const pairSplit = record?.pair?.split('_');
         return record.orderType === 'MARKET'
           ? 'Market Price'
-          : nDecimalFormat(price, precisionsConfigs?.[record.pair]?.money ?? 8);
+          : nDecimalFormat(price, precisionsConfigs?.[record.pair]?.money ?? 8) + (pairSplit ? ` ${pairSplit[1]}` : '');
+      },
+    },
+    {
+      title: t('historypage.columns.avgPrice'),
+      key: 'avgPrice',
+      dataIndex: 'avgPrice',
+      sorter: (a: any, b: any) => a.avgPrice - b.avgPrice,
+      showSorterTooltip: false,
+      render(avgPrice, item: any) {
+        const pairSplit = item?.pair?.split('_');
+        return (
+          nDecimalFormat(avgPrice, precisionsConfigs?.[item.pair]?.money ?? 8) + (pairSplit ? ` ${pairSplit[1]}` : '')
+        );
       },
     },
     {
@@ -104,7 +108,11 @@ const OrderHistory: FC<TOrderHistory> = ({ onChangePage, precisionsConfigs }) =>
       sorter: (a: any, b: any) => a.amount - b.amount,
       showSorterTooltip: false,
       render(amount, item: any) {
-        return nDecimalFormat(amount, precisionsConfigs?.[item.pair]?.coin ?? 8);
+        const pairSplit = item?.pair?.split('_');
+        return (
+          nDecimalFormatNoZero(amount, precisionsConfigs?.[item.pair]?.coin ?? 8, 2) +
+          (pairSplit ? ` ${pairSplit[0]}` : '')
+        );
       },
     },
     {
@@ -114,8 +122,10 @@ const OrderHistory: FC<TOrderHistory> = ({ onChangePage, precisionsConfigs }) =>
       sorter: (a: any, b: any) => a.total - b.total,
       showSorterTooltip: false,
       render(total, record: any) {
-        const pairSplit = record.pair.split('_');
-        return `${nDecimalFormat(total, precisionsConfigs?.[record.pair]?.money ?? 8)} ${pairSplit[1]}`;
+        const pairSplit = record?.pair?.split('_');
+        return `${nDecimalFormat(total, precisionsConfigs?.[record.pair]?.money ?? 8)} ${
+          pairSplit ? pairSplit[1] : ''
+        }`;
       },
     },
     {

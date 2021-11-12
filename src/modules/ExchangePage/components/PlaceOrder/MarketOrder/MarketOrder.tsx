@@ -38,15 +38,15 @@ export const MarketOrder: FC<MarketOrderProps> = ({
   const { t } = useTranslation();
   const isAuthenticated = true; // check later
   const [data, setData] = useState<Data>({
-    price: undefined,
-    total: undefined,
+    price: 0,
+    total: 0,
   });
-
   const [slider, setSlider] = useState<number>(0);
-
   const { currentPair } = useAppSelector((state) => state.system.exchange);
   const listPairValue = useAppSelector(getListPairValue);
   const pairData = listPairValue.find((listPairValue_item: any) => listPairValue_item.pair === currentPair);
+  const maxAmount = filterSide === 'buy' && pairData.buy ? available / pairData.buy : available;
+
   const { mutateAsync: mutatePlaceOrderMarket, status: placeOrderStatus } = useMutation(placeOrderMarket, {
     onSuccess: () => {
       Toast('success', t('exchange.place_order.order_success'));
@@ -90,8 +90,6 @@ export const MarketOrder: FC<MarketOrderProps> = ({
   const handleLogin = () => {
     window.location.href = '/api/auth/login';
   };
-
-  const maxAmount = filterSide === 'buy' && pairData.buy ? available / pairData.buy : available;
   return (
     <>
       <InputTrade text={'Market'} type="text" coin={moneyCoin} title={t('exchange.place_order.price')} disabled />{' '}
@@ -102,7 +100,7 @@ export const MarketOrder: FC<MarketOrderProps> = ({
           setSlider((value / maxAmount) * 100);
         }}
         coin={coin}
-        title={t('exchange.place_order.total')}
+        title={t('exchange.place_order.amount')}
         decimalAmount={coinDecimalAmount}
       />
       <InputSlider

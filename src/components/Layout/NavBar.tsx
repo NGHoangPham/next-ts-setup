@@ -3,7 +3,7 @@ import styles from './NavBar.module.css';
 import { Layout, Menu, Space, Grid } from 'antd';
 import { Button as ButtonAntd } from 'antd';
 import clsx from 'clsx';
-import { TFunction, useTranslation } from 'next-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import {
   faChevronDown,
   faUser,
@@ -15,20 +15,21 @@ import {
   faUsers,
   faHistory,
   faGift,
+  faWallet,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 import { Button } from 'components/Button';
-import { routes } from 'types/routes';
 import { Dropdown } from 'components/Dropdown';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { useMemo } from 'react';
 import { LanguageSelect } from 'components/LanguageSelect';
-import { useUser, UserProfile } from '@auth0/nextjs-auth0';
+import Link from 'next/link';
 
 import SettingOutlined from '@ant-design/icons/lib/icons/SettingOutlined';
 import { PopupTradeSetting } from './PopupTradeSetting';
 import { QuickOrder } from './QuickOrder';
+import { routes } from 'types/routes';
+import { UserProfile, useUser } from '@auth0/nextjs-auth0';
 import { NextRouter, useRouter } from 'next/router';
 
 const { useBreakpoint } = Grid;
@@ -71,6 +72,11 @@ const accountRoutes = [
     icon: faHistory,
     title: 'navbar.account.history',
     path: routes.history,
+  },
+  {
+    icon: faWallet,
+    title: 'subaccounts',
+    path: routes.subAccount,
   },
 ];
 

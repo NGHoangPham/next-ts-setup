@@ -3,13 +3,6 @@
   padding: 10px 12px;
 }
 
-.transfer :global .styles_inputContainer__DSsni {
-  justify-content: space-between;
-}
-.transfer :global .SelectWithLabel_input__3giek {
-  width: 150px !important;
-}
-
 .subAccItem {
   border: 0;
   border-left: 0 !important;
@@ -94,4 +87,35 @@
 
 .tabWrapper {
   max-width: 75% !important;
+}
+
+@media (max-width: 1366px) {
+  .tabWrapper {
+    max-width: 70% !important;
+  }
+
+  .btnAction {
+    padding: 4px 8px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabWrapper {
+    max-width: 65% !important;
+  }
+
+  .btnAction {
+    margin: 2px 4px;
+  }
+}
+
+@media (max-width: 560px) {
+  .tabWrapper {
+    max-width: 60% !important;
+  }
+}
+
+.titleMax {
+  margin-bottom: 8px;
+  margin-left: 6px;
 }

@@ -1,5 +1,5 @@
 .mainContainer {
-  margin: 40px 0;
+  margin: 0;
 }
 
 .filterBySchedule {
@@ -117,7 +117,9 @@
   margin: 32px 0;
 }
 
-/* 250px */
+.table :global .ant-table-column-title {
+  z-index: unset;
+}
 
 @media (max-width: 640px) {
   .filerGroup > div > label {

@@ -16,14 +16,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import Link from 'next/link';
 import { Avatar } from 'components/Avatar';
 import { Surface } from 'components/Surface';
-import Link from 'next/link';
-import { routes } from 'types/routes';
-import { useUser } from '@auth0/nextjs-auth0';
 import { UserOutlined } from '@ant-design/icons';
+import { routes } from 'types/routes';
 import { useRouter } from 'next/router';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const { Text } = Typography;
 
@@ -83,7 +82,7 @@ const items = [
   },
   {
     icon: faWallet,
-    title: 'sub accounts',
+    title: 'subaccounts',
     path: routes.subAccount,
   },
 ];

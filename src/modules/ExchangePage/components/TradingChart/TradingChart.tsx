@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
+
 import { Surface } from 'components/Surface';
 import styles from './TradingChart.module.css';
 import { Row, Col, Dropdown, Menu } from 'antd';
@@ -18,8 +19,7 @@ import PairSelector from './PairSelector';
 import { useTranslation } from 'next-i18next';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { setFullscreen } from 'store/ducks/system/slice';
-import { nDecimalFormat } from 'utils/number';
-
+import { nDecimalFormat, nDecimalFormatNoZero } from 'utils/number';
 const TVChartContainer = dynamic(() => import('TVChartContainer'), { ssr: false });
 
 interface TradingChartProps {
@@ -33,10 +33,48 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
     text: '1h',
     resolution: '60',
   });
+  const [headerData, setHeaderData] = useState<any>(null);
+
   const { currentPair, fullscreen, language } = useAppSelector((state) => state.system.exchange);
   const { listPairValue, currentPairValue } = useAppSelector((state) => state.exchange);
 
-  const [headerData, setHeaderData] = useState<any>(null);
+  const lastPrice = useMemo(() => {
+    return headerData?.last ? nDecimalFormat(headerData.last, currentPairValue?.[3] ?? 2) : '__';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [headerData]);
+  const lastPriceUsd = useMemo(() => {
+    return `$${headerData?.last ? nDecimalFormat(headerData.last, 2) : '__'}`;
+  }, [headerData]);
+  const dayChangePec = useMemo(() => {
+    return (headerData?.dchange_pec ? Math.abs(headerData.dchange_pec).toFixed(2) : '__') + ' %';
+  }, [headerData]);
+  const dayChange = useMemo(() => {
+    return headerData?.dchange ? nDecimalFormat(headerData.dchange, currentPairValue?.[3] ?? 2) : '__';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [headerData]);
+  const dayHigh = useMemo(() => {
+    return headerData?.high ? nDecimalFormat(headerData.high, currentPairValue?.[3] ?? 2) : '__';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [headerData]);
+  const dayLow = useMemo(() => {
+    return headerData?.low ? nDecimalFormat(headerData.low, currentPairValue?.[3] ?? 2) : '__';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [headerData]);
+  const dayVolumn = useMemo(() => {
+    let rs = '';
+    if (headerData?.vol) {
+      let vol = Number(headerData.vol);
+      if (vol > 1000000) {
+        vol = vol / 1000000;
+        rs += ' M';
+      }
+      rs = nDecimalFormatNoZero('' + vol, currentPairValue?.[3] ?? 2, 2) + rs;
+    } else {
+      rs = '__';
+    }
+    return rs;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [headerData]);
 
   const intervals = [
     { text: '1m', resolution: '1' },
@@ -87,12 +125,8 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
               </Col>
               <Col flex="none">
                 <div className={styles.currentWrap}>
-                  <span className={clsx(styles.textBlock, styles.textStrong)}>
-                    {headerData?.last ? nDecimalFormat(headerData.last, currentPairValue?.[3] ?? 2) : '__'}
-                  </span>
-                  <span className={clsx(styles.textBlock, styles.textSmall)}>
-                    {`$${headerData?.last ? nDecimalFormat(headerData.last, 2) : '__'}`}
-                  </span>
+                  <span className={clsx(styles.textBlock, styles.textStrong)}>{lastPrice}</span>
+                  <span className={clsx(styles.textBlock, styles.textSmall)}>{lastPriceUsd}</span>
                 </div>
               </Col>
               <Col flex="none">
@@ -107,15 +141,13 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
                       !headerData || headerData.dchange_pec < 0 ? styles.textDanger : styles.textSuccess
                     )}
                   >
-                    <span>
-                      {headerData?.dchange ? nDecimalFormat(headerData.dchange, currentPairValue?.[3] ?? 2) : '__'}
-                    </span>
+                    <span>{dayChange}</span>
                     <span className={styles.percentage}>
                       <FontAwesomeIcon
                         className={styles.sortIcon}
                         icon={!headerData || headerData.dchange_pec < 0 ? faSortDown : faSortUp}
                       />{' '}
-                      {headerData?.dchange_pec ? Math.abs(headerData.dchange_pec).toFixed(2) : '__'} %
+                      {dayChangePec}
                     </span>
                   </span>
                 </div>
@@ -125,9 +157,7 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
                   <span className={clsx(styles.textBlock, styles.textSmall, styles.textDark)}>
                     {t('exchange.trading_chart.24h_high')}
                   </span>
-                  <span className={clsx(styles.textBlock, styles.textSmall)}>
-                    {headerData?.high ? nDecimalFormat(headerData.high, currentPairValue?.[3] ?? 2) : '__'}
-                  </span>
+                  <span className={clsx(styles.textBlock, styles.textSmall)}>{dayHigh}</span>
                 </div>
               </Col>
               <Col flex="none">
@@ -135,9 +165,7 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
                   <span className={clsx(styles.textBlock, styles.textSmall, styles.textDark)}>
                     {t('exchange.trading_chart.24h_low')}
                   </span>
-                  <span className={clsx(styles.textBlock, styles.textSmall)}>
-                    {headerData?.low ? nDecimalFormat(headerData.low, currentPairValue?.[3] ?? 2) : '__'}
-                  </span>
+                  <span className={clsx(styles.textBlock, styles.textSmall)}>{dayLow}</span>
                 </div>
               </Col>
               <Col flex="none">
@@ -145,9 +173,7 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
                   <span className={clsx(styles.textBlock, styles.textSmall, styles.textDark)}>
                     {t('exchange.trading_chart.24h_volumn')}
                   </span>
-                  <span className={clsx(styles.textBlock, styles.textSmall)}>
-                    {headerData?.vol ? `${nDecimalFormat(headerData.vol, currentPairValue?.[3] ?? 2)}` : '__'}
-                  </span>
+                  <span className={clsx(styles.textBlock, styles.textSmall)}>{dayVolumn}</span>
                 </div>
               </Col>
             </Row>

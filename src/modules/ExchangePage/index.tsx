@@ -1,14 +1,13 @@
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable no-case-declarations */
-import { FC, useState, useEffect, useRef } from 'react';
+import React, { FC, useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import clsx from 'clsx';
-import { Row, Col } from 'antd';
+import { Row, Col, Grid } from 'antd';
 import { TradeBoard } from './components/TradeBoard';
 import Wallet from './components/Wallet';
 import OrdersHistory from './components/OrdersHistory';
 import TradingChart from './components/TradingChart';
-
 import PlaceOrder from './components/PlaceOrder';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { setCurrentPair } from 'store/ducks/system/slice';
@@ -24,8 +23,9 @@ import { USER_COOKIES, ORDER_CANCELED, ORDER_COMPLETE, isServer, WEB_SOCKET_URL 
 import { SubAccountHeader } from 'components/SubAccountHeader/SubAccountHeader';
 import { getAuthToken } from 'api/auth_token';
 import { useUser } from '@auth0/nextjs-auth0';
-import Head from 'next/head';
+import { getCookies, setCookies } from 'utils/cookies';
 
+const { useBreakpoint } = Grid;
 type IFilterType = 'orderBook' | 'trades';
 
 const ExchangePage: FC = () => {
@@ -46,6 +46,8 @@ const ExchangePage: FC = () => {
   const listValue = useRef<any>([]);
   const { user } = useUser();
   let groupPairs: any = [];
+
+  const screens = useBreakpoint();
 
   function sortBy(attr: any, rev: any) {
     if (rev === undefined) {
@@ -580,14 +582,14 @@ const ExchangePage: FC = () => {
     if (convertData.length > 0 && convertData[0].list_m && convertData[0].list_m.length > 0) {
       let temp = convertData[0].list_m[0].data;
 
-      if (localStorage.getItem(USER_COOKIES.currentPair)) {
-        let tempName = localStorage.getItem(USER_COOKIES.currentPair);
+      if (getCookies(USER_COOKIES.currentPair)) {
+        let tempName = getCookies(USER_COOKIES.currentPair);
 
         const check = convertData[0].list_m.find((item: any) => item.pair === tempName);
         temp = check ? check.data : convertData[0].list_m[0].data;
       }
 
-      localStorage.setItem(USER_COOKIES.currentPair, temp[0]);
+      setCookies(USER_COOKIES.currentPair, temp[0]);
       dispatch(setCurrentPair(temp[0]));
       dispatch(setCurrentPairValue(temp));
     }
@@ -596,28 +598,42 @@ const ExchangePage: FC = () => {
 
   return (
     <>
-      <Head>
-        <script src="/datafeeds/udf/dist/polyfills.js"></script>
-        <script src="/datafeeds/udf/dist/bundle.js"></script>
-      </Head>
       <div className={clsx(styles.root, 'container')}>
-        <Row gutter={[24, 24]} className={styles.mainRow}>
-          <Col span={24}>
+        <Row gutter={[24, 24]} className={styles.mainRow} justify="center">
+          <Col xl={24}>
             <SubAccountHeader />
           </Col>
-          <Col span={5}>
-            {orderBook && <TradeBoard filterType={filterTypeTradeBoard} setFilterType={setFilterTypeTradeBoard} />}
-          </Col>
-          <Col span={14} className={styles.tradingChartCol}>
+          {screens.xl && (
+            <Col xl={5}>
+              {orderBook && <TradeBoard filterType={filterTypeTradeBoard} setFilterType={setFilterTypeTradeBoard} />}
+            </Col>
+          )}
+          <Col xl={14} lg={24} md={24} className={styles.tradingChartCol}>
             {chart && <TradingChart convertData={convertData} />}
           </Col>
-          <Col span={5}>{market && <PlaceOrder />}</Col>
+          {!screens.xl && (
+            <Col lg={12} md={8} sm={12} xs={18}>
+              {orderBook && <TradeBoard filterType={filterTypeTradeBoard} setFilterType={setFilterTypeTradeBoard} />}
+            </Col>
+          )}
+          <Col xl={5} lg={12} md={8} sm={12} xs={18}>
+            {market && <PlaceOrder />}
+          </Col>
+          {!screens.lg && (
+            <Col md={8} sm={12} xs={18}>
+              {walletSnap && <Wallet />}
+            </Col>
+          )}
         </Row>
         <Row gutter={[24, 24]} className={styles.mainRow}>
-          <Col span={19}>
+          <Col xl={19} lg={19} md={18}>
             {openOrders && <OrdersHistory openOrdersList={openOrdersList} loadingOpenOrders={loadingOpenOrders} />}
           </Col>
-          <Col span={5}>{walletSnap && <Wallet />}</Col>
+          {screens.lg && (
+            <Col xl={5} lg={5}>
+              {walletSnap && <Wallet />}
+            </Col>
+          )}
         </Row>
       </div>
     </>

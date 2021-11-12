@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import { FC, useEffect, useState } from 'react';
 import styles from './ActionBanners.module.css';
 import commonStyles from './common.module.css';
@@ -14,9 +13,6 @@ import {
   useGetCreditCoins,
   useGetCreditFiats,
   getFiatCurrency,
-  TLimitFiat,
-  getLimitFiat,
-  TResponseLimit,
 } from 'api/get_credit';
 
 import { currencyImgs } from 'assets/images/currency';
@@ -38,11 +34,6 @@ const requestFiat: TGetDigitalFiat = {
   target: 'p',
 };
 
-const requestLimit: TLimitFiat = {
-  type: 'WEB',
-  fiat_currency: 'USD',
-};
-
 const BuyNow: FC = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -51,7 +42,6 @@ const BuyNow: FC = () => {
   const [invalidFiat, setInvalidFiat] = useState<boolean>(true);
   const [fiatValue, setFiatValue] = useState<number>(0);
   const [digitalFiat, setDigitalFiat] = useState('');
-  const [dataLimitFiat, setLimitFiat] = useState<TResponseLimit>();
   const { data: dataFiats, status: statusFiats } = useGetCreditFiats();
   const { data: dataCoins, status: statusCoins } = useGetCreditCoins();
   // TODO: Check API Response
@@ -63,30 +53,21 @@ const BuyNow: FC = () => {
   }, [dataFiats, dataCoins]);
 
   useEffect(() => {
-    // Switch from crypto to money
+    //Switch from crypto to money
     mutateDigitalFiat(requestFiat);
-    mutateLimitFiat(requestLimit);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getFiatIcon = (fiat: string) => {
     let icon = null;
     try {
       const countryCode = currencyCode[fiat].toLowerCase();
-      icon = require(`assets/icons/currency/${countryCode}.png`);
+      icon = `/images/currency/${countryCode}.png`;
     } catch (e) {
-      if (e instanceof Error && e) icon = require('assets/icons/currency/vn.png');
+      if (e instanceof Error && e) icon = '/images/currency/vn.png';
     }
     return icon;
   };
-
-  const { mutate: mutateLimitFiat } = useMutation(getLimitFiat, {
-    onSuccess: (data) => {
-      setLimitFiat(data);
-    },
-    onError: (error: TError) => {
-      message.error(error.message);
-    },
-  });
 
   // TODO: CHECK API RESPONSE
   const { mutate: mutateDigitalFiat } = useMutation(getFiatCurrency, {
@@ -99,7 +80,7 @@ const BuyNow: FC = () => {
   });
 
   // TODO: CHECK API RESPONSE
-  // Switch from money to crypto
+  //Switch from money to crypto
   const { mutate: mutateDigitalCoin } = useMutation(getDigitalCoin, {
     onSuccess: () => {
       message.success('Success!');
@@ -116,14 +97,10 @@ const BuyNow: FC = () => {
       fiatAmount: fiatValue || 0,
       target: 's',
     };
-    if ((dataLimitFiat && fiatValue <= parseInt(dataLimitFiat.minLimit)) || !fiatValue) {
+    if (fiatValue === 0 || !fiatValue) {
       setFiatValue(fiatValue);
       setInvalidFiat(true);
-      message.error(`* Minimum purchase amount for Simplex is ${dataLimitFiat?.minLimit} USD`);
-    } else if (dataLimitFiat && fiatValue >= parseInt(dataLimitFiat.maxLimit)) {
-      setFiatValue(fiatValue);
-      setInvalidFiat(true);
-      message.error(`* Maximum purchase amount for Simplex is ${dataLimitFiat?.maxLimit} USD`);
+      message.error(`* Amount must be greater than zero!`);
     } else {
       setFiatValue(fiatValue);
       setInvalidFiat(false);
@@ -138,7 +115,6 @@ const BuyNow: FC = () => {
   const onChangeFiat = (value: string) => {
     setFiat(value);
     setFiatValue(0);
-    mutateLimitFiat({ ...requestLimit, fiat_currency: value });
     mutateDigitalFiat({ ...requestFiat, fiatCurrency: value });
   };
 
@@ -174,7 +150,7 @@ const BuyNow: FC = () => {
             }}
             inputProps={{
               placeholder: '0',
-              onValueChange: (values: any) => debounceFiatValue(values),
+              onValueChange: (values) => debounceFiatValue(values),
             }}
             invalid={invalidFiat && fiatValue !== 0}
           >
@@ -182,7 +158,7 @@ const BuyNow: FC = () => {
               return (
                 <Option key={fiat} value={fiat}>
                   <Space size={4} align="center">
-                    <Avatar type="secondary" src={getFiatIcon(fiat).default} size={22} />
+                    <Avatar type="secondary" src={getFiatIcon(fiat)} size={22} />
                     <span>{fiat}</span>
                   </Space>
                 </Option>

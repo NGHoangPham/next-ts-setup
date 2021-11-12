@@ -22,6 +22,7 @@ import {
   ORDER_TOTAL,
   ORDER_TYPE,
 } from './constant';
+import { useWalletQuery } from 'api/wallet';
 import { useUser } from '@auth0/nextjs-auth0';
 
 interface TOpenOrder {
@@ -33,6 +34,10 @@ interface TOpenOrder {
 const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisionsConfigs }) => {
   const { t } = useTranslation();
   const { user } = useUser();
+
+  const { refetch }: any = useWalletQuery({
+    enabled: false,
+  });
 
   const handleCancelAll = () => {
     mutateCancelAllOrder({ demoFlag: 1 });
@@ -54,11 +59,19 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
   const { mutate: mutateCancelOrder } = useMutation(cancelOrder, {
     onSuccess: () => {
       message.success('Cancel Success!');
+      refetch();
     },
     onError: (error: TError) => {
       message.error(error.message);
     },
   });
+
+  const fnAbsolute = (s: any) => {
+    if (s.indexOf('-') === 0) {
+      s = s.slice(1);
+    }
+    return s;
+  };
 
   const columns: ColumnsType<any> = [
     {
@@ -117,7 +130,11 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
       sorter: (a: any, b: any) => a[ORDER_LIMIT_PRICE] - b[ORDER_LIMIT_PRICE],
       showSorterTooltip: false,
       render(value, item) {
-        return value === '0' ? '--' : nDecimalFormat(value, precisionsConfigs?.[item[1]]?.money ?? 8);
+        const pairSplit = item?.pair?.split('_');
+        return value === '0'
+          ? '--'
+          : nDecimalFormat(fnAbsolute(value), precisionsConfigs?.[item[1]]?.money ?? 8) +
+              (pairSplit ? ` ${pairSplit[1]}` : '');
       },
     },
     {
@@ -127,9 +144,11 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
       sorter: (a: any, b: any) => Math.abs(parseFloat(a[ORDER_PRICE])) - Math.abs(parseFloat(b[ORDER_PRICE])),
       showSorterTooltip: false,
       render(value, item) {
-        return item[ORDER_TYPE] === 'MARKET'
+        const pairSplit = item?.pair?.split('_');
+        return item?.[ORDER_TYPE] === 'MARKET'
           ? 'Market Price'
-          : nDecimalFormat(value, precisionsConfigs?.[item[1]]?.money ?? 8).split('-');
+          : nDecimalFormat(fnAbsolute(value), precisionsConfigs?.[item[1]]?.money ?? 8).split('-') +
+              (pairSplit ? ` ${pairSplit[1]}` : '');
       },
     },
     {
@@ -139,7 +158,11 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
       sorter: (a: any, b: any) => parseFloat(a[ORDER_TOTAL]) - parseFloat(b[ORDER_TOTAL]),
       showSorterTooltip: false,
       render(amount, item) {
-        return nDecimalFormat(amount, precisionsConfigs?.[item[1]]?.coin ?? 8);
+        const pairSplit = item?.pair?.split('_');
+        return (
+          nDecimalFormat(fnAbsolute(amount), precisionsConfigs?.[item[1]]?.coin ?? 8) +
+          (pairSplit ? ` ${pairSplit[0]}` : '')
+        );
       },
     },
     {
@@ -151,11 +174,12 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
         Math.abs(parseFloat(b[ORDER_PRICE])) * parseFloat(b[ORDER_TOTAL]),
       showSorterTooltip: false,
       render(value, item: any) {
-        const pairSplit = item[1].split('_');
+        const pairSplit = item?.[1]?.split('_');
         const total = (Math.abs(parseFloat(item[ORDER_PRICE])) * parseFloat(item[ORDER_TOTAL])).toFixed(2);
         return value === 'MARKET'
           ? 'Market Price'
-          : nDecimalFormat(`${total}`, precisionsConfigs?.[item[1]]?.money ?? 8) + ` ${pairSplit[1]}`;
+          : nDecimalFormat(fnAbsolute(`${total}`), precisionsConfigs?.[item[1]]?.money ?? 8) +
+              (pairSplit ? ` ${pairSplit[1]}` : '');
       },
     },
     {

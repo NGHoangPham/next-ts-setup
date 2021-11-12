@@ -68,4 +68,20 @@
 .root .filter {
   padding: 3px 2px;
   background-color: rgb(128 128 128 / 21%);
+  width: 100%;
+  justify-content: center;
+}
+
+.root :global .ant-slider-handle {
+  z-index: unset !important;
+}
+.root :global .ant-slider-dot {
+  z-index: unset !important;
+}
+
+@media (min-width: 1200px) and (max-width: 1310px) {
+  .root .filter {
+    max-width: -webkit-fill-available;
+    overflow-x: scroll;
+  }
 }

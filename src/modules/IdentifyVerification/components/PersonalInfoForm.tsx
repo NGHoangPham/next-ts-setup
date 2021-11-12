@@ -20,7 +20,7 @@ interface PersonalInfoFormProps {
   kycData: any[];
 }
 const getFlagImage: any = (countryCode: string) => {
-  return require(`assets/icons/currency/${countryCode.toLowerCase()}.png`);
+  return `assets/icons/currency/${countryCode.toLowerCase()}.png`;
 };
 
 const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ onSuccess, kycData }) => {

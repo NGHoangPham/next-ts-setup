@@ -38,7 +38,7 @@
 }
 
 .root :global .ant-switch-handle::before {
-  background-image: url('/images/svgs/slider.svg');
+  background-image: url('/src/assets/svgs/components/slider.svg');
   width: 18px;
   height: 18px;
 }
@@ -52,7 +52,7 @@
   background-color: var(--success);
 }
 .root :global .ant-col-12 div:first-of-type {
-  padding-left: 20px;
+  padding-left: 4px;
 }
 
 .switcher {

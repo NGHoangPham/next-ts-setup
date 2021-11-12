@@ -22,7 +22,7 @@ import { useTranslation } from 'next-i18next';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { setCurrentPairValue, getCurrentPairValue } from 'store/ducks/exchange/slice';
 import { setCurrentPair } from 'store/ducks/system/slice';
-import { nDecimalFormat, fixed } from 'utils/number';
+import { nDecimalFormat } from 'utils/number';
 import { Dropdown, Menu } from 'antd';
 import { USER_COOKIES } from 'utils/constant';
 import { getCookies, setCookies } from 'utils/cookies';
@@ -61,7 +61,6 @@ const PairSelectorPanel: React.FC<PairSelectorPanelProps> = ({
   const currentPairValue = useAppSelector(getCurrentPairValue);
   const [fiatList, setFiatList] = useState<any>([]);
   const [watchPairs, setWatchPairs] = useState<any>([]);
-
   const [listM, setListM] = useState<any>([]);
 
   interface TOrderTable {
@@ -199,6 +198,7 @@ const PairSelectorPanel: React.FC<PairSelectorPanelProps> = ({
     }
 
     setCookies(USER_COOKIES.watchPairs, JSON.stringify(watchpairs));
+
     setWatchPairs(watchpairs);
   };
 
@@ -337,7 +337,7 @@ const PairSelectorPanel: React.FC<PairSelectorPanelProps> = ({
           date: new Date().getTime(),
           pair: item.pair,
           price: nDecimalFormat(item.last, currentPairValue?.[3] ?? 2),
-          priceUsd: `$ ${fixed(item.last, 2)}`,
+          priceUsd: `$ ${nDecimalFormat(getUsdUnit(item), 2)}`,
           dchangePec: parseFloat(item.dchange_pec),
         });
       });
@@ -390,6 +390,25 @@ const PairSelectorPanel: React.FC<PairSelectorPanelProps> = ({
     }
   };
 
+  const getUsdUnit = (pairData: any) => {
+    let price = pairData.last;
+    let money = pairData.pair.split('_')[1];
+
+    if (money === 'USDT') {
+      return price;
+    }
+
+    let item = listPairValue.find((ele: any) => {
+      return ele.pair === money + '_USDT';
+    });
+
+    if (item) {
+      return '' + parseFloat(item.last) * parseFloat(price);
+    }
+
+    return price;
+  };
+
   return (
     <div
       className={clsx(
@@ -405,7 +424,7 @@ const PairSelectorPanel: React.FC<PairSelectorPanelProps> = ({
         <div className={styles.dropdownContent}>
           <Row wrap={false}>
             <Col flex="auto">
-              <Space direction="horizontal">
+              <Space direction="horizontal" wrap>
                 <FilterGroup
                   filled
                   datas={[

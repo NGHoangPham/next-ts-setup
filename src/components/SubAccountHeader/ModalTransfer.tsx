@@ -72,6 +72,12 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
       accountId: value,
     };
     mutateCoinSub(requestCoinSub);
+    form.resetFields(['amount']);
+  };
+
+  const setTargetAccount = (value: any) => {
+    setTarget(value);
+    form.resetFields(['amount']);
   };
 
   useEffect(() => {
@@ -112,6 +118,7 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
     setCoin(value);
     const dataCoin = dataWallet?.filter((item: any) => item.coinType === value);
     setDataCoin(dataCoin);
+    form.resetFields(['amount']);
   };
 
   const onCancelModal = () => {
@@ -120,8 +127,8 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
     dispatch(setModalTransfer(false));
   };
 
-  const checkAmount = (_: any, value: { number: number }) => {
-    if (value.number > 0) {
+  const checkAmount = (_: any, value: number) => {
+    if (value > 0) {
       return Promise.resolve();
     }
     return Promise.reject(new Error('Amount must be greater than zero!'));
@@ -198,7 +205,7 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
               <SelectWithLabel
                 label={t('sub_account.transfer.placeholder_target')}
                 value={targetAccount}
-                onChange={(value) => setTarget(value)}
+                onChange={(value) => setTargetAccount(value)}
               >
                 {sourceAccount !== mainAccountId ? (
                   <Option key={'Main Account'} value={mainAccountId}>
@@ -216,28 +223,23 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
             </Form.Item>
           </Col>
         </Row>
-        <Row gutter={[12, 0]} align="top">
-          {coin && (
-            <>
+        {coin && (
+          <>
+            <Row gutter={[12, 0]} align="top">
               <Col>
                 <p className={styles.amountTitle}>{t('sub_account.transfer.amount')}</p>
               </Col>
-              <Col span={10} className={styles.amountWrapper}>
+              <Col lg={10} md={12} sm={14} className={styles.amountWrapper}>
                 <Form.Item
                   name="amount"
                   label={t('sub_account.transfer.amount')}
                   className={styles.amount}
                   rules={[{ required: true, validator: checkAmount }]}
                 >
-                  <InputNumber
-                    min={0}
-                    max={dataCoin[0]?.assessment}
-                    defaultValue={0}
-                    formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  />
+                  <InputNumber min={0} max={dataCoin[0]?.assessment} defaultValue={0} />
                 </Form.Item>
               </Col>
-              <Col className={styles.amountWrapper}>
+              <Col span={3} className={styles.amountWrapper}>
                 <Button
                   className={styles.btnMax}
                   type="primary"
@@ -250,20 +252,19 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
                   {t('sub_account.transfer.max')}
                 </Button>
               </Col>
-              <Col span={6} />
-              <Space>
-                <p>
-                  {t('sub_account.transfer.max')}
-                  {sttCoinSub === 'loading' || statusWallet === 'loading' ? (
-                    <Spin className={styles.spin} />
-                  ) : (
-                    `: ${dataCoin[0]?.assessment} ${coin}`
-                  )}
-                </p>
-              </Space>
-            </>
-          )}
-        </Row>
+            </Row>
+            <Row className={styles.titleMax}>
+              <Col>
+                {t('sub_account.transfer.max')}
+                {sttCoinSub === 'loading' || statusWallet === 'loading' ? (
+                  <Spin className={styles.spin} />
+                ) : (
+                  `: ${dataCoin[0]?.assessment} ${coin}`
+                )}
+              </Col>
+            </Row>
+          </>
+        )}
       </Form>
     </Modal>
   );

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Space, Table } from 'antd';
 import dayjs from 'dayjs';
-import { nDecimalFormat } from 'utils/number';
+import { nDecimalFormat, nDecimalFormatNoZero } from 'utils/number';
 import styles from './OrdersHistory.module.css';
 import { Avatar } from 'components/Avatar';
 import { ColumnsType } from 'antd/lib/table';
@@ -10,7 +10,6 @@ import { THistoryData } from 'api/history';
 import { PaginationForm } from 'components/Pagination/Pagination';
 import { useAppSelector } from 'hooks';
 import { useTranslation } from 'next-i18next';
-
 import { Button } from 'components/Button';
 import { useUser } from '@auth0/nextjs-auth0';
 
@@ -72,9 +71,10 @@ const TradeHistory: FC<TTradeHistory> = ({ onChangePage, precisionsConfigs }) =>
       sorter: (a: any, b: any) => a.price - b.price,
       showSorterTooltip: false,
       render(price, record: any) {
+        const pairSplit = record?.pair?.split('_');
         return record.orderType === 'MARKET'
           ? 'Market Price'
-          : nDecimalFormat(price, precisionsConfigs?.[record.pair]?.money ?? 8);
+          : nDecimalFormat(price, precisionsConfigs?.[record.pair]?.money ?? 8) + (pairSplit ? ` ${pairSplit[1]}` : '');
       },
     },
     {
@@ -84,7 +84,11 @@ const TradeHistory: FC<TTradeHistory> = ({ onChangePage, precisionsConfigs }) =>
       sorter: (a: any, b: any) => a.amount - b.amount,
       showSorterTooltip: false,
       render(amount, item: any) {
-        return nDecimalFormat(amount, precisionsConfigs?.[item.pair]?.coin ?? 8);
+        const pairSplit = item?.pair?.split('_');
+        return (
+          nDecimalFormatNoZero(amount, precisionsConfigs?.[item.pair]?.coin ?? 8, 2) +
+          (pairSplit ? ` ${pairSplit[0]}` : '')
+        );
       },
     },
     {
@@ -94,8 +98,10 @@ const TradeHistory: FC<TTradeHistory> = ({ onChangePage, precisionsConfigs }) =>
       sorter: (a: any, b: any) => a.total - b.total,
       showSorterTooltip: false,
       render(total, record: any) {
-        const pairSplit = record.pair.split('_');
-        return `${nDecimalFormat(total, precisionsConfigs?.[record.pair]?.money ?? 8)} ${pairSplit[1]}`;
+        const pairSplit = record?.pair?.split('_');
+        return `${nDecimalFormat(total, precisionsConfigs?.[record.pair]?.money ?? 8)} ${
+          pairSplit ? pairSplit[1] : ''
+        }`;
       },
     },
   ];

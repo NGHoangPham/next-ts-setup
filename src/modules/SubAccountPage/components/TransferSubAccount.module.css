@@ -32,13 +32,11 @@
 .root :global .ant-input-number-handler-wrap {
   display: none;
 }
-.root :global .styles_inputContainer__DSsni {
-  justify-content: space-between;
-}
-.root :global .SelectWithLabel_input__3giek {
-  width: 150px !important;
-}
-
 .spin {
   margin-left: 12px;
+}
+
+.titleMax {
+  margin-bottom: 8px;
+  margin-left: 6px;
 }

@@ -6,7 +6,7 @@ import { setIsLoadingSub, setListSubAccount, setModalCreate } from 'store/ducks/
 import { useMutation } from 'react-query';
 import { createSubAccount, getSubAccounts } from 'api/sub_account';
 import { TError } from 'api/types';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 
 export interface ModalCreateProps {
   className?: string;
@@ -47,6 +47,7 @@ export const ModalCreate: FC<ModalCreateProps> = () => {
 
   useEffect(() => {
     dispatch(setIsLoadingSub(sttSubAccounts));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sttSubAccounts]);
 
   const onChangeInput = (e: any) => {
@@ -65,7 +66,7 @@ export const ModalCreate: FC<ModalCreateProps> = () => {
       confirmLoading={sttCreateSubAccount === 'loading'}
     >
       <Form name="create_sub_account" onFinish={onCreateSubAccount} form={form}>
-        <Form.Item name="subAccountName" label={t('sub_account.placeholder_name')} rules={[{ required: true }]}>
+        <Form.Item name="subAccountName" label={t('sub_account.placeholder_name_error')} rules={[{ required: true }]}>
           <Row>
             <Col lg={24}>
               <InputWithLabel
