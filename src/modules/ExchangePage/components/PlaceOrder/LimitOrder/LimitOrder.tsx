@@ -9,7 +9,7 @@ import { useAppSelector } from 'hooks';
 import { placeOrderMarket } from 'api/market';
 import { useMutation } from 'react-query';
 import { TError } from 'api/types';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { fixed } from 'utils/number';
 import { getOrderBookSelect } from 'store/ducks/exchange/slice';
 import { useUser } from '@auth0/nextjs-auth0';
@@ -74,7 +74,6 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
         });
         setSlider((amountSelect / maxAmount) * 100);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [orderBookSelect]);
 
     const { mutateAsync: mutatePlaceOrder, status: placeOrderStatus } = useMutation(placeOrderMarket, {
@@ -222,7 +221,6 @@ export const LimitOrder: FC<LimitOrderProps> = memo(
               type="buy"
               className={styles.submitButton}
               onClick={() => (user ? handleOrder(true) : handleLogin())}
-              loading={placeOrderStatus === 'loading'}
             >
               {user ? t('exchange.place_order.buy') + ' ' + coin : 'Login to trade'}
             </Button>

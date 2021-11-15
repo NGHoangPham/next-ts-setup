@@ -19,7 +19,8 @@ import PairSelector from './PairSelector';
 import { useTranslation } from 'next-i18next';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { setFullscreen } from 'store/ducks/system/slice';
-import { nDecimalFormat, nDecimalFormatNoZero } from 'utils/number';
+import { nDecimalFormat, nDecimalFormatAdvance } from 'utils/number';
+
 const TVChartContainer = dynamic(() => import('TVChartContainer'), { ssr: false });
 
 interface TradingChartProps {
@@ -40,7 +41,6 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
 
   const lastPrice = useMemo(() => {
     return headerData?.last ? nDecimalFormat(headerData.last, currentPairValue?.[3] ?? 2) : '__';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerData]);
   const lastPriceUsd = useMemo(() => {
     return `$${headerData?.last ? nDecimalFormat(headerData.last, 2) : '__'}`;
@@ -50,15 +50,12 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
   }, [headerData]);
   const dayChange = useMemo(() => {
     return headerData?.dchange ? nDecimalFormat(headerData.dchange, currentPairValue?.[3] ?? 2) : '__';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerData]);
   const dayHigh = useMemo(() => {
     return headerData?.high ? nDecimalFormat(headerData.high, currentPairValue?.[3] ?? 2) : '__';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerData]);
   const dayLow = useMemo(() => {
     return headerData?.low ? nDecimalFormat(headerData.low, currentPairValue?.[3] ?? 2) : '__';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerData]);
   const dayVolumn = useMemo(() => {
     let rs = '';
@@ -68,12 +65,15 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
         vol = vol / 1000000;
         rs += ' M';
       }
-      rs = nDecimalFormatNoZero('' + vol, currentPairValue?.[3] ?? 2, 2) + rs;
+      rs =
+        nDecimalFormatAdvance(vol, currentPairValue?.[3] ?? 2, {
+          isNoZero: true,
+          minPrecision: 2,
+        }) + rs;
     } else {
       rs = '__';
     }
     return rs;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerData]);
 
   const intervals = [
@@ -187,7 +187,7 @@ const TradingChart: React.FC<TradingChartProps> = ({ convertData }) => {
                 dispatch(setFullscreen(!fullscreen));
               }}
             >
-              <img alt="chart" src={ChartImg.src} />
+              <img src={ChartImg.src} alt="chart" />
             </button>
             <div className={styles.actionWrap}>
               <div>

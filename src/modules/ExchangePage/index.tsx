@@ -1,6 +1,5 @@
-/* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable no-case-declarations */
-import React, { FC, useState, useEffect, useRef } from 'react';
+import { FC, useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import clsx from 'clsx';
 import { Row, Col, Grid } from 'antd';
@@ -451,7 +450,6 @@ const ExchangePage: FC = () => {
     if (isSocketReady) {
       handleAuth();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSocketReady]);
   useEffect(() => {
     if (isSocketReady && pairList) {
@@ -460,7 +458,6 @@ const ExchangePage: FC = () => {
         websocket.send(msg);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSocketReady, pairList]);
   const handleAuth = async () => {
     if (user) {
@@ -484,7 +481,6 @@ const ExchangePage: FC = () => {
         }
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSocketReady, currentPair, filterTypeTradeBoard]);
 
   // convert pairList data
@@ -495,7 +491,6 @@ const ExchangePage: FC = () => {
       });
       setConvertData(groupPairs);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pairList]);
   const formLeverFun = (item: any) => {
     if (parseFloat(item[9]) === 3) {
@@ -593,50 +588,49 @@ const ExchangePage: FC = () => {
       dispatch(setCurrentPair(temp[0]));
       dispatch(setCurrentPairValue(temp));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [convertData]);
 
   return (
-    <>
-      <div className={clsx(styles.root, 'container')}>
-        <Row gutter={[24, 24]} className={styles.mainRow} justify="center">
+    <div className={clsx(styles.root, 'container')}>
+      <Row gutter={[24, 24]} className={styles.mainRow} justify="center">
+        {user && (
           <Col xl={24}>
             <SubAccountHeader />
           </Col>
-          {screens.xl && (
-            <Col xl={5}>
-              {orderBook && <TradeBoard filterType={filterTypeTradeBoard} setFilterType={setFilterTypeTradeBoard} />}
-            </Col>
-          )}
-          <Col xl={14} lg={24} md={24} className={styles.tradingChartCol}>
-            {chart && <TradingChart convertData={convertData} />}
+        )}
+        {screens.xl && (
+          <Col xl={5}>
+            {orderBook && <TradeBoard filterType={filterTypeTradeBoard} setFilterType={setFilterTypeTradeBoard} />}
           </Col>
-          {!screens.xl && (
-            <Col lg={12} md={8} sm={12} xs={18}>
-              {orderBook && <TradeBoard filterType={filterTypeTradeBoard} setFilterType={setFilterTypeTradeBoard} />}
-            </Col>
-          )}
-          <Col xl={5} lg={12} md={8} sm={12} xs={18}>
-            {market && <PlaceOrder />}
+        )}
+        <Col xl={14} lg={24} md={24} className={styles.tradingChartCol}>
+          {chart && <TradingChart convertData={convertData} />}
+        </Col>
+        {!screens.xl && (
+          <Col lg={12} md={8} sm={12} xs={18}>
+            {orderBook && <TradeBoard filterType={filterTypeTradeBoard} setFilterType={setFilterTypeTradeBoard} />}
           </Col>
-          {!screens.lg && (
-            <Col md={8} sm={12} xs={18}>
-              {walletSnap && <Wallet />}
-            </Col>
-          )}
-        </Row>
-        <Row gutter={[24, 24]} className={styles.mainRow}>
-          <Col xl={19} lg={19} md={18}>
-            {openOrders && <OrdersHistory openOrdersList={openOrdersList} loadingOpenOrders={loadingOpenOrders} />}
+        )}
+        <Col xl={5} lg={12} md={8} sm={12} xs={18}>
+          {market && <PlaceOrder />}
+        </Col>
+        {!screens.lg && (
+          <Col md={8} sm={12} xs={18}>
+            {walletSnap && <Wallet />}
           </Col>
-          {screens.lg && (
-            <Col xl={5} lg={5}>
-              {walletSnap && <Wallet />}
-            </Col>
-          )}
-        </Row>
-      </div>
-    </>
+        )}
+      </Row>
+      <Row gutter={[24, 24]} className={styles.mainRow}>
+        <Col xl={19} lg={19} md={18}>
+          {openOrders && <OrdersHistory openOrdersList={openOrdersList} loadingOpenOrders={loadingOpenOrders} />}
+        </Col>
+        {screens.lg && (
+          <Col xl={5} lg={5}>
+            {walletSnap && <Wallet />}
+          </Col>
+        )}
+      </Row>
+    </div>
   );
 };
 

@@ -15,8 +15,9 @@ import { getAuthToken } from 'api/auth_token';
 import { useMutation } from 'react-query';
 import { TError } from 'api/types';
 import { useTranslation } from 'next-i18next';
-import { isServer, WEB_SOCKET_URL } from 'utils/constant';
+import { WEB_SOCKET_URL } from 'utils/constant';
 import { take } from 'lodash';
+
 import {
   ORDER_CANCELED,
   ORDER_COMPLETE,
@@ -110,7 +111,7 @@ const getColumns = (handleCancelAll: Function, handleCancelOrder: Function, t: F
     sorter: (a: any, b: any) => parseFloat(a[ORDER_TOTAL]) - parseFloat(b[ORDER_TOTAL]),
     showSorterTooltip: false,
     render(amount) {
-      return nDecimalFormat(amount, 8);
+      return nDecimalFormat(amount, 6);
     },
   },
   {
@@ -194,7 +195,7 @@ export const OpenOrder: FC<TOpenOrder> = ({ historyType }) => {
   const isDashboard = useMemo(() => router.pathname.includes('/dashboard'), [router.pathname]);
   const { user } = useUser();
   useEffect(() => {
-    if (!websocket && !isServer()) {
+    if (!websocket) {
       setSocket(
         window.WebSocket ? new window.WebSocket(WEB_SOCKET_URL) : new (window as any).MozWebSocket(WEB_SOCKET_URL)
       );
@@ -218,7 +219,6 @@ export const OpenOrder: FC<TOpenOrder> = ({ historyType }) => {
     if (isSocketReady) {
       handleSocketOpen();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSocketReady]);
   useEffect(() => {
     if (isDashboard && listOrders) {
@@ -233,7 +233,6 @@ export const OpenOrder: FC<TOpenOrder> = ({ historyType }) => {
       const authTokenMsg = `{"event":"loginToken","token":"${authToken['auth-token']}"}`;
       sendMsg(authTokenMsg);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authToken]);
 
   const { mutate: mutateAuthToken } = useMutation(getAuthToken, {
@@ -334,11 +333,9 @@ export const OpenOrder: FC<TOpenOrder> = ({ historyType }) => {
           ? parseFloat(item[ORDER_PRICE]) >= 0 && !item[ORDER_PRICE].includes('-')
           : !(parseFloat(item[ORDER_PRICE]) >= 0 && !item[ORDER_PRICE].includes('-'))
       ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [historyType]
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const columns = useMemo(() => getColumns(handleCancelAll, handleCancelOrder, t), []);
 
   return (

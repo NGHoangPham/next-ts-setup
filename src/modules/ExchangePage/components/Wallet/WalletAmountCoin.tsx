@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 import { currencyImgs } from 'assets/images/currency';
 import { Avatar } from 'components/Avatar';
 import styles from './Wallet.module.css';
-import { nDecimalFormat, nDecimalFormatNoZero } from 'utils/number';
+import { nDecimalFormat, nDecimalFormatAdvance } from 'utils/number';
 
 interface WalletAmountCoinProps {
   coin: string;
@@ -24,7 +24,12 @@ const WalletAmountCoin: FC<WalletAmountCoinProps> = ({ coin, value, assessment }
       />
       <div className={styles.walletAmount}>
         <div>
-          <span>{nDecimalFormatNoZero(value, 8, 2)}</span>
+          <span>
+            {nDecimalFormatAdvance(value, 8, {
+              isNoZero: true,
+              minPrecision: 2,
+            })}
+          </span>
         </div>
         <div className={styles.usdAmount} title={usdText}>
           {usdText}

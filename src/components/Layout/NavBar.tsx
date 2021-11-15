@@ -83,18 +83,14 @@ const accountRoutes = [
 const getWalletMenu = (t: TFunction<'translation'>) => (
   <Menu>
     {walletRoutes.map((wallet) => (
-      <Link key={wallet.title} href={wallet.path}>
-        <a>
-          <Menu.Item>{t(wallet.title)}</Menu.Item>
-        </a>
-      </Link>
+      <Menu.Item key={wallet.title}>
+        <Link key={wallet.title} href={wallet.path}>
+          {t(wallet.title)}
+        </Link>
+      </Menu.Item>
     ))}
   </Menu>
 );
-
-const handleLogout = () => {
-  window.location.href = '/api/auth/logout';
-};
 
 const getAccountMenu = (t: TFunction<'translation'>, router: NextRouter, dispatch: Function, user?: UserProfile) => (
   <Menu>
@@ -115,8 +111,9 @@ const getAccountMenu = (t: TFunction<'translation'>, router: NextRouter, dispatc
         {t(account.title)}
       </Menu.Item>
     ))}
-    <Menu.Item key="navbar.account.log_out" icon={<FontAwesomeIcon icon={faPowerOff} />} onClick={handleLogout}>
-      {t('navbar.account.log_out')}
+
+    <Menu.Item key="navbar.account.log_out" icon={<FontAwesomeIcon icon={faPowerOff} />}>
+      <a href="/api/auth/logout">{t('navbar.account.log_out')}</a>
     </Menu.Item>
   </Menu>
 );

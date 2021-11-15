@@ -16,7 +16,7 @@ import { FC, useMemo, useState } from 'react';
 import { nFormatter, nDecimalFormat } from 'utils/number';
 import styles from './BuyTable.module.css';
 import commonStyles from './common.module.css';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const getColumns = (t: TFunction): ColumnsType<MarketGroupItem> => [
   {
@@ -67,13 +67,9 @@ const getColumns = (t: TFunction): ColumnsType<MarketGroupItem> => [
     align: 'right',
     colSpan: 5,
     render() {
-      const router = useRouter();
-      const onClick = () => {
-        router.push(routes.buy);
-      };
       return (
-        <Button type="info" onClick={onClick}>
-          {t('homepage.buy.buy_now')}
+        <Button type="info">
+          <Link href={routes.buy}>{t('homepage.buy.buy_now')}</Link>
         </Button>
       );
     },

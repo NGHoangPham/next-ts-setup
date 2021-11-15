@@ -18,7 +18,9 @@ interface WalletProps {}
 const Wallet: FC<WalletProps> = () => {
   const { t } = useTranslation();
   const { currentPair } = useAppSelector((state) => state.system.exchange);
-  const { data: walletData }: UseQueryResult<WalletGroupItem> = useWalletQuery({});
+  const { data: walletData }: UseQueryResult<WalletGroupItem> = useWalletQuery({
+    refetchInterval: 10000,
+  });
 
   return (
     <Surface filled className={styles.wallet}>

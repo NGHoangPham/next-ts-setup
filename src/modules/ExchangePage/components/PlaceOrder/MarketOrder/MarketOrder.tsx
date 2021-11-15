@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from '../PlaceOrder.module.css';
 import { InputTrade } from '../InputTrade';
 import { InputSlider } from '../InputSlider';
@@ -7,10 +7,11 @@ import { Toast } from 'components/Toast';
 import { placeOrderMarket } from 'api/market';
 import { useMutation } from 'react-query';
 import { TError } from 'api/types';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { fixed } from 'utils/number';
 import { useAppSelector } from 'hooks/reduxHook';
 import { getListPairValue } from 'store/ducks/exchange/slice';
+import { useUser } from '@auth0/nextjs-auth0';
 
 interface MarketOrderProps {
   filterSide: 'buy' | 'sell';
@@ -22,7 +23,6 @@ interface MarketOrderProps {
   refetch: Function;
 }
 interface Data {
-  price: number | undefined;
   total: number | undefined;
 }
 
@@ -36,9 +36,9 @@ export const MarketOrder: FC<MarketOrderProps> = ({
   refetch,
 }: MarketOrderProps) => {
   const { t } = useTranslation();
-  const isAuthenticated = true; // check later
+  const { user } = useUser();
+  const { orderBookSelect } = useAppSelector((state) => state.exchange);
   const [data, setData] = useState<Data>({
-    price: 0,
     total: 0,
   });
   const [slider, setSlider] = useState<number>(0);
@@ -87,9 +87,20 @@ export const MarketOrder: FC<MarketOrderProps> = ({
     }
   };
 
+  useEffect(() => {
+    if (orderBookSelect?.price) {
+      const amountSelect = orderBookSelect.amount;
+      setData({
+        ...data,
+        total: amountSelect,
+      });
+    }
+  }, [orderBookSelect]);
+
   const handleLogin = () => {
     window.location.href = '/api/auth/login';
   };
+
   return (
     <>
       <InputTrade text={'Market'} type="text" coin={moneyCoin} title={t('exchange.place_order.price')} disabled />{' '}
@@ -116,19 +127,19 @@ export const MarketOrder: FC<MarketOrderProps> = ({
           <Button
             type="buy"
             className={styles.submitButton}
-            onClick={() => (isAuthenticated ? handleOrder(true) : handleLogin())}
+            onClick={() => (user ? handleOrder(true) : handleLogin())}
             loading={placeOrderStatus === 'loading'}
           >
-            {isAuthenticated ? t('exchange.place_order.buy') + ' ' + coin : 'Login to trade'}
+            {user ? t('exchange.place_order.buy') + ' ' + coin : 'Login to trade'}
           </Button>
         ) : (
           <Button
             type="sell"
             className={styles.submitButton}
-            onClick={() => (isAuthenticated ? handleOrder(false) : handleLogin())}
+            onClick={() => (user ? handleOrder(false) : handleLogin())}
             loading={placeOrderStatus === 'loading'}
           >
-            {isAuthenticated ? t('exchange.place_order.sell') + ' ' + coin : 'Login to trade'}
+            {user ? t('exchange.place_order.sell') + ' ' + coin : 'Login to trade'}
           </Button>
         )}
       </div>

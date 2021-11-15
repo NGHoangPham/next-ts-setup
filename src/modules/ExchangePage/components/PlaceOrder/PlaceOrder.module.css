@@ -17,7 +17,7 @@
 }
 
 .available {
-  margin: 10px 0 7px;
+  margin: 10px 0 8px;
   width: 100%;
   justify-content: space-between;
 }
@@ -35,25 +35,29 @@
 }
 
 .ant-checkbox {
-  margin-right: 5px;
+  margin-right: 4px;
 }
 
 .buttonContainer {
   width: 100%;
-  padding: 0 15px;
+  padding: 0 16px;
   margin: 10px 0 20px;
 }
 
 .submitButton {
   width: 100%;
   margin-top: 10px;
-  height: 33px !important;
+  height: 32px !important;
   line-height: 11px !important;
   text-transform: capitalize;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .root :global .ant-checkbox {
-  margin-right: 5px;
+  margin-right: 4px;
 }
 
 .root :global .ant-radio-button-wrapper span {

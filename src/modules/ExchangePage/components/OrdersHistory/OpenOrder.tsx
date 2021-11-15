@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Button as ButtonAntd, message, Popconfirm, Space, Table } from 'antd';
 import dayjs from 'dayjs';
-import { nDecimalFormat } from 'utils/number';
+import { nDecimalFormatAdvance } from 'utils/number';
 import { Button } from 'components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -66,13 +66,6 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
     },
   });
 
-  const fnAbsolute = (s: any) => {
-    if (s.indexOf('-') === 0) {
-      s = s.slice(1);
-    }
-    return s;
-  };
-
   const columns: ColumnsType<any> = [
     {
       title: t('historypage.columns.date'),
@@ -133,7 +126,7 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
         const pairSplit = item?.pair?.split('_');
         return value === '0'
           ? '--'
-          : nDecimalFormat(fnAbsolute(value), precisionsConfigs?.[item[1]]?.money ?? 8) +
+          : nDecimalFormatAdvance(value, precisionsConfigs?.[item[1]]?.money ?? 8, { isAbsolute: true }) +
               (pairSplit ? ` ${pairSplit[1]}` : '');
       },
     },
@@ -147,7 +140,7 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
         const pairSplit = item?.pair?.split('_');
         return item?.[ORDER_TYPE] === 'MARKET'
           ? 'Market Price'
-          : nDecimalFormat(fnAbsolute(value), precisionsConfigs?.[item[1]]?.money ?? 8).split('-') +
+          : nDecimalFormatAdvance(value, precisionsConfigs?.[item[1]]?.money ?? 8, { isAbsolute: true }).split('-') +
               (pairSplit ? ` ${pairSplit[1]}` : '');
       },
     },
@@ -160,7 +153,7 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
       render(amount, item) {
         const pairSplit = item?.pair?.split('_');
         return (
-          nDecimalFormat(fnAbsolute(amount), precisionsConfigs?.[item[1]]?.coin ?? 8) +
+          nDecimalFormatAdvance(amount, precisionsConfigs?.[item[1]]?.coin ?? 8, { isAbsolute: true }) +
           (pairSplit ? ` ${pairSplit[0]}` : '')
         );
       },
@@ -178,7 +171,7 @@ const OpenOrder: FC<TOpenOrder> = ({ openOrdersList, loadingOpenOrders, precisio
         const total = (Math.abs(parseFloat(item[ORDER_PRICE])) * parseFloat(item[ORDER_TOTAL])).toFixed(2);
         return value === 'MARKET'
           ? 'Market Price'
-          : nDecimalFormat(fnAbsolute(`${total}`), precisionsConfigs?.[item[1]]?.money ?? 8) +
+          : nDecimalFormatAdvance(total, precisionsConfigs?.[item[1]]?.money ?? 8, { isAbsolute: true }) +
               (pairSplit ? ` ${pairSplit[1]}` : '');
       },
     },

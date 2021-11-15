@@ -10,8 +10,9 @@ import { OrderPlacePopup } from '../OrderPlacePopup';
 import { placeOrderMarket } from 'api/market';
 import { useMutation } from 'react-query';
 import { TError } from 'api/types';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { fixed } from 'utils/number';
+import { useUser } from '@auth0/nextjs-auth0';
 
 interface StopOrderProps {
   filterSide: 'buy' | 'sell';
@@ -44,7 +45,7 @@ export const StopOrder: FC<StopOrderProps> = ({
   refetch,
 }: StopOrderProps) => {
   const { t } = useTranslation();
-  const isAuthenticated = true; // check later
+  const { user } = useUser();
   const { orderBookSelect } = useAppSelector((state) => state.exchange);
   const { currentPairValue } = useAppSelector((state) => state.exchange);
   const [visible, setVisible] = useState<boolean>(false);
@@ -81,7 +82,6 @@ export const StopOrder: FC<StopOrderProps> = ({
         total: priceSelect * amountSelect,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderBookSelect]);
 
   const { mutateAsync: mutatePlaceOrderMarket, status: placeOrderStatus } = useMutation(placeOrderMarket, {
@@ -234,19 +234,19 @@ export const StopOrder: FC<StopOrderProps> = ({
           <Button
             type="buy"
             className={styles.submitButton}
-            onClick={() => (isAuthenticated ? handleOrder() : handleLogin())}
+            onClick={() => (user ? handleOrder() : handleLogin())}
             loading={placeOrderStatus === 'loading'}
           >
-            {isAuthenticated ? t('exchange.place_order.buy') + ' ' + coin : 'Login to trade'}
+            {user ? t('exchange.place_order.buy') + ' ' + coin : 'Login to trade'}
           </Button>
         ) : (
           <Button
             type="sell"
             className={styles.submitButton}
-            onClick={() => (isAuthenticated ? handleOrder() : handleLogin())}
+            onClick={() => (user ? handleOrder() : handleLogin())}
             loading={placeOrderStatus === 'loading'}
           >
-            {isAuthenticated ? t('exchange.place_order.sell') + ' ' + coin : 'Login to trade'}
+            {user ? t('exchange.place_order.sell') + ' ' + coin : 'Login to trade'}
           </Button>
         )}
       </div>

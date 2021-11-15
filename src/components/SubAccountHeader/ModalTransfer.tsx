@@ -11,8 +11,10 @@ import { currencyImgs } from 'assets/images/currency';
 import { InputNumber } from 'components/Input';
 import { useMutation } from 'react-query';
 import { transferBetweenSub, getCoinsWithSubAccount, TListSubAccount } from 'api/sub_account';
-import { getWalletQuery } from 'api/wallet/request';
 import { useTranslation } from 'next-i18next';
+import { UseQueryResult } from 'react-query';
+import { WalletGroupItem } from 'api/wallet/types';
+import { useWalletQuery } from 'api/wallet';
 
 export interface ModelTransferProps {
   className?: string;
@@ -32,6 +34,13 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
   const [listSource, setListSource] = useState<TListSubAccount[]>(listSubAccount);
   const [listTarget, setListTarget] = useState<TListSubAccount[]>(listSubAccount);
   const [form] = Form.useForm();
+  const {
+    data: walletData,
+    status: statusWallet,
+    refetch: refetchWalletData,
+  }: UseQueryResult<WalletGroupItem> = useWalletQuery({
+    refetchInterval: 10000,
+  });
 
   const onTransfer = (e: any) => {
     const requestTransfer = { ...e, amount: e.amount.toString() };
@@ -41,7 +50,7 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
   const { mutate: mutateTransferSub, status: sttTransferSub } = useMutation(transferBetweenSub, {
     onSuccess: () => {
       message.success(t('sub_account.transfer.success'));
-      mutateWallet();
+      refetchWalletData();
       dispatch(setModalTransfer(false));
       form.resetFields();
       setListSource(listSubAccount);
@@ -81,10 +90,9 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
   };
 
   useEffect(() => {
-    mutateWallet();
+    refetchWalletData();
     setCoin('');
     form.resetFields();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSubAccount]);
 
   useEffect(() => {
@@ -103,16 +111,13 @@ export const ModalTransfer: FC<ModelTransferProps> = () => {
     }
   }, [sourceAccount, targetAccount, listSubAccount]);
 
-  const { mutate: mutateWallet, status: statusWallet } = useMutation(getWalletQuery, {
-    onSuccess: (data) => {
-      setDataWallet(data.coins);
-      const dataCoin = data?.coins?.filter((item: any) => item.coinType === coin);
-      setDataCoin(dataCoin);
-    },
-    onError: (error: any) => {
-      message.error(error.message);
-    },
-  });
+  useEffect(() => {
+    if (walletData) {
+      setDataWallet(walletData.coins);
+    }
+    const dataCoin = walletData?.coins?.filter((item: any) => item.coinType === coin);
+    setDataCoin(dataCoin);
+  }, [walletData]);
 
   const onChangeCoin = (value: any) => {
     setCoin(value);

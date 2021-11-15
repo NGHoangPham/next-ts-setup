@@ -40,48 +40,75 @@ export const nDecimalFormat = (value: string, scale?: number) => {
   return result;
 };
 
-/**
- * Inherit from nDecimalFormat;
- * Example: num = 11.22;
- * nDecimalFormat(num, 6) = 11.220000;
- * nDecimalFormatNoZero(num, 6) = 11.22;
- * @param value
- * @param scale
- * @param fixPrecision
- * @returns
- */
-export const nDecimalFormatNoZero = (value: string, scale?: number, fixPrecision?: number) => {
-  let result: any = nDecimalFormat('' + value, scale ?? 2);
-  let temp: any = result.replaceAll(',', '');
-  temp = '' + parseFloat(temp);
-  temp = temp.split('.');
-  temp = temp.length === 2 ? temp[1] : '';
-
-  if (fixPrecision && temp.length < fixPrecision) {
-    let len = fixPrecision - temp.length;
-    for (let i = 0; i < len; i = i + 1) {
-      temp = temp + '0';
-    }
-  }
-
-  if (temp.length !== 0) {
-    temp = '.' + temp;
-  }
-
-  let format = result.split('.')[0] + temp;
-  return format;
-};
-
-export const nDecimalFormatHuman = (value: string, scale?: number, fixPrecision?: number) => {
-  let num = Number(value);
-  if (num > 1000) {
-    return nFormatter(num, 3);
-  } else {
-    return nDecimalFormatNoZero(value, scale, fixPrecision);
-  }
-};
-
 export const fixed = (value: string, scale: number) => {
   const result = new BigNumber(value).toFixed(scale, BigNumber.ROUND_DOWN);
   return result;
+};
+
+export const absolute = (number: string | number): string | number => {
+  if (typeof number === 'number') {
+    return Math.abs(number);
+  }
+
+  while (number && number.indexOf('-') === 0) {
+    number = number.slice(1);
+  }
+
+  return number;
+};
+
+interface nDecimalFormatAdvanceConfig {
+  isNoZero?: boolean;
+  minPrecision?: number;
+  isAbsolute?: boolean;
+}
+
+export const nDecimalFormatAdvance = (
+  number: string | number,
+  scale?: number,
+  options?: nDecimalFormatAdvanceConfig
+) => {
+  const defaultOptions: nDecimalFormatAdvanceConfig = {
+    isNoZero: false,
+    minPrecision: undefined,
+    isAbsolute: false,
+  };
+  options = { ...defaultOptions, ...options };
+
+  if (!scale) {
+    scale = 2; // default scale
+  }
+
+  if (typeof number === 'number') {
+    number = '' + number;
+  }
+
+  // check absolute
+  if (options.isAbsolute) {
+    number = absolute(number) as string;
+  }
+
+  // format number
+  number = nDecimalFormat(number, scale);
+
+  // precess zero
+  if (options.isNoZero) {
+    let temp: any = number.replaceAll(',', '');
+    temp = '' + parseFloat(temp);
+    temp = temp.split('.');
+    temp = temp.length === 2 ? temp[1] : '';
+    if (options.minPrecision && options.minPrecision <= scale && temp.length < options.minPrecision) {
+      let len = options.minPrecision - temp.length;
+      for (let i = 0; i < len; i = i + 1) {
+        temp = temp + '0';
+      }
+    }
+    if (temp.length !== 0) {
+      temp = '.' + temp;
+    }
+    number = number.split('.')[0] + temp;
+  }
+
+  // return
+  return number;
 };

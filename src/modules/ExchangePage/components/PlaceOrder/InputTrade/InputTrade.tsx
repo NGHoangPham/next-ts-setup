@@ -3,7 +3,7 @@ import { Surface } from 'components/Surface';
 import styles from './InputTrade.module.css';
 import { Input } from 'components/Input';
 import { InputNumber, Row, Col } from 'antd';
-import { fixed, nDecimalFormatNoZero } from 'utils/number';
+import { fixed, nDecimalFormatAdvance } from 'utils/number';
 
 type InputTradeProps = {
   value?: number | undefined;
@@ -27,7 +27,9 @@ export const InputTrade: FC<InputTradeProps> = memo(
 
     const formatter = useMemo(() => {
       return (value: any) => {
-        return nDecimalFormatNoZero('' + value, precision ?? 2);
+        return nDecimalFormatAdvance('' + value, precision ?? 2, {
+          isNoZero: true,
+        });
       };
     }, [precision]);
 
