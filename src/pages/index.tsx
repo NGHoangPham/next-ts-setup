@@ -1,22 +1,24 @@
-import { useUser } from '@auth0/nextjs-auth0';
-import { Button } from 'antd';
 import type { NextPage } from 'next';
+import styles from './styles.module.less';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css';
+import { Button } from 'components/Button';
+import clsx from 'clsx';
+import { Space } from 'antd';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { getHelloMessage, setHelloMessage } from 'store/ducks/hello/slide';
 
 const Home: NextPage = () => {
-  const { user } = useUser();
+  const dispatch = useAppDispatch();
+  const helloMessage = useAppSelector(getHelloMessage);
+
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.main, 'container')}>
       <>
-        <h1>Login page</h1>
-        {user && <Button href="/api/auth/logout">Logout</Button>}
-        <br />
-        <br />
-        {!user && <Button href="/api/auth/login">Login</Button>}
-        <Link href="/profile">
-          <Button>Profile</Button>
-        </Link>
+        <h3> Home page</h3>
+        <Space direction="vertical">
+          <Button onClick={() => dispatch(setHelloMessage('Hello world'))}>Say hello</Button>
+          {helloMessage}
+        </Space>
       </>
     </div>
   );

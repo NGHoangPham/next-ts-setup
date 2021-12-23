@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import nProgress from 'nprogress';
 import { useEffect } from 'react';
 
+nProgress.configure({ showSpinner: false });
+
 export const useRouteLoading = () => {
   const router = useRouter();
 
